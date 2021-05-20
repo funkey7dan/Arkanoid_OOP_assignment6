@@ -1,3 +1,7 @@
+package game.ui.gameinfo;
+
+import game.engine.actors.sprites.Sprite;
+import game.Game;
 import biuoop.DrawSurface;
 
 import java.awt.Color;

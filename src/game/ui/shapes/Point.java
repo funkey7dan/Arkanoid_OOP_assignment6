@@ -1,9 +1,9 @@
-//XXXXXXXXX
+package game.ui.shapes;//XXXXXXXXX
 
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * The class for the object Point.
+ * The class for the object game.ui.shapes.Point.
  * Has attributes of x and y coordinates.
  */
 public class Point {
@@ -54,7 +54,7 @@ public class Point {
 //     * @param other - the point we compare to
 //     * @return return true if the points are equal, false otherwise.
 //     */
-//    public boolean equals(Point other) {
+//    public boolean equals(game.ui.shapes.Point other) {
 //        if (other == null) {
 //            return false;
 //        }

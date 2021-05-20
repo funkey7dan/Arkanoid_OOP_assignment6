@@ -1,9 +1,11 @@
-//XXXXXXXXX
+package game.engine.actors.collidables;//XXXXXXXXX
+
+import game.ui.shapes.Point;
 
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object CollisionInfo.
+ * A class for the object Game.Engine.Actors.Collidables.CollisionInfo.
  * Has attributes of the rectangle that holds the collision point, and the collision object.
  * Supports getting the collision point and the collision object.
  */

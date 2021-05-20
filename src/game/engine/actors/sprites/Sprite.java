@@ -1,3 +1,6 @@
+package game.engine.actors.sprites;
+
+import game.Game;
 import biuoop.DrawSurface;
 
 

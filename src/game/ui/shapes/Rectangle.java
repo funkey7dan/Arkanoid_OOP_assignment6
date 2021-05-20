@@ -1,4 +1,4 @@
-//XXXXXXXXX
+package game.ui.shapes;//XXXXXXXXX
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Rectangle.
+ * A class for the object game.ui.shapes.Rectangle.
  * Has attributes of upperLeft, radius, width , height.
  * Supports getters for each of the attributes.
  */
@@ -26,7 +26,7 @@ public class Rectangle {
 
 
     /**
-     * Constructor for the Rectangle class.
+     * Constructor for the game.ui.shapes.Rectangle class.
      *
      * @param upperLeft - the location of the left upper corner of the rectangle
      * @param width     - width of the rectangle

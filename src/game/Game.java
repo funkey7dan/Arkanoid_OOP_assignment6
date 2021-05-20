@@ -1,10 +1,25 @@
+package game;//XXXXXXXXX
+
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
+import game.engine.accessories.Counter;
+import game.engine.actors.Frame;
+import game.engine.actors.*;
+import game.engine.actors.collidables.Collidable;
+import game.engine.actors.collidables.GameEnvironment;
+import game.engine.actors.sprites.Sprite;
+import game.engine.actors.sprites.SpriteCollection;
+import game.engine.listeners.BallAdder;
+import game.engine.listeners.BallRemover;
+import game.engine.listeners.BlockRemover;
+import game.engine.listeners.ScoreTrackingListener;
+import game.ui.gameinfo.LivesIndicator;
+import game.ui.gameinfo.ScoreIndicator;
+import game.ui.shapes.Point;
 
 import javax.imageio.ImageIO;
-import java.awt.Color;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.util.Random;
 
@@ -12,8 +27,8 @@ import java.util.Random;
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Game.
- * Has attributes of the having a Sprite Collection, the relevant Game environment, gui.
+ * A class for the object Game.Engine.Animation.Game.
+ * Has attributes of the having a Game.Engine.Actors.Sprites.Sprite Collection, the relevant Game.Engine.Animation.Game environment, gui.
  * Hold the information about the size of the GUI, and the background image for the game.
  * Supports adding all the hittable objects to the game environment, and also the Sprites.
  * Can initialize the game, and run it.
@@ -103,7 +118,7 @@ public class Game {
     }
 
     /**
-     * Initialize a new game: create the Blocks and Ball (and Paddle)
+     * Initialize a new game: create the Blocks and game.engine.actors.Ball (and game.engine.actors.Paddle)
      * and add them to the game.
      */
     public void initialize() {
@@ -138,7 +153,7 @@ public class Game {
         ball1.addToGame(this);
         ball2.addToGame(this);
         currentBalls.increase(2);
-        //PrintingHitListener phl = new PrintingHitListener();TODO remove
+
 
         // Listeners
         LivesIndicator livesIndicator = new LivesIndicator(this);
@@ -157,7 +172,7 @@ public class Game {
         Random rand1 = new Random();
 
 
-        //Block creating loop
+        //game.engine.actors.Block creating loop
         for (int i = BLOCK_COLUMNS; i >= 0; i--) {
             for (int j = i; j <= BLOCK_ROWS; j++) {
                 int randI = rand1.nextInt(101);
@@ -167,8 +182,9 @@ public class Game {
                     block = new KillBlock(new Point(BLOCK_START_X + j * BLOCK_WIDTH,
                             BLOCK_START_Y + BLOCK_HEIGHT * i), BLOCK_WIDTH, BLOCK_HEIGHT);
                     block.addHitListener(ballRemover);
+                    currentBlocks.decrease(1);
                 } else if (randJ == j) {
-                    block = new BallAddBlock(new Point(BLOCK_START_X + j * BLOCK_WIDTH,
+                    block = new AddBallBlock(new Point(BLOCK_START_X + j * BLOCK_WIDTH,
                             BLOCK_START_Y + BLOCK_HEIGHT * i), BLOCK_WIDTH, BLOCK_HEIGHT);
                     block.addHitListener(ballAdder);
                 } else {

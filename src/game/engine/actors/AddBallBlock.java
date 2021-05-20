@@ -1,14 +1,18 @@
-import biuoop.DrawSurface;
+package game.engine.actors;
 
-public class BallAddBlock extends Block {
+import biuoop.DrawSurface;
+import game.ui.shapes.Point;
+import game.ui.shapes.Rectangle;
+
+public class AddBallBlock extends Block {
     /**
-     * Constructor for Block.
+     * Constructor for game.engine.actors.Block.
      *
      * @param upperLeft - the left top corner of the block
      * @param width     - the width of the block
      * @param height    - the height of the block
      */
-    public BallAddBlock(Point upperLeft, double width, double height) {
+    public AddBallBlock(Point upperLeft, double width, double height) {
         super(upperLeft, width, height);
     }
 
@@ -17,7 +21,7 @@ public class BallAddBlock extends Block {
      *
      * @param rec - the rectangle we use to build the block
      */
-    public BallAddBlock(Rectangle rec) {
+    public AddBallBlock(Rectangle rec) {
         super(rec);
     }
 

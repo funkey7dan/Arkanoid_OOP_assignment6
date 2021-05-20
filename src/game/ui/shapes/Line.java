@@ -1,11 +1,11 @@
-//XXXXXXXXX
+package game.ui.shapes;//XXXXXXXXX
 
 import java.util.List;
 
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Line.
+ * A class for the object game.ui.shapes.Line.
  * Has attributes of start, end, color and getLength.
  * Supports checking intersection with other lines, finding the intersection point , checking if a point is on the line,
  * checking whether the line has the same getLength as other line, checking if 2 lines are the same.
@@ -18,7 +18,7 @@ public class Line {
     // constructors
 
     /**
-     * Constructor for the class Line using two points.
+     * Constructor for the class game.ui.shapes.Line using two points.
      *
      * @param start - the starting point of the line.
      * @param end   - the ending point of the line.
@@ -32,7 +32,7 @@ public class Line {
     }
 
     /**
-     * Constructor for the class Line using two sets of coordinates.
+     * Constructor for the class game.ui.shapes.Line using two sets of coordinates.
      *
      * @param x1 - the x-coordinate of the starting point.
      * @param y1 - the y-coordinate of the starting point.

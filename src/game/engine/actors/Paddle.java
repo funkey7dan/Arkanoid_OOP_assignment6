@@ -1,12 +1,19 @@
+package game.engine.actors;
+
+import game.engine.actors.collidables.Collidable;
+import game.engine.actors.sprites.Sprite;
+import game.Game;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
+import game.ui.shapes.Point;
+import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Paddle.
+ * A class for the object game.engine.actors.Paddle.
  * Has attributes of the rectangle that holds its shape, the color of the block and the texture overlay.
  * Supports moving one step or moving one step with a change of color after bouncing off the bounds.
  */
@@ -23,7 +30,7 @@ public class Paddle implements Sprite, Collidable {
 
 
     /**
-     * Constructor for Paddle.
+     * Constructor for game.engine.actors.Paddle.
      *
      * @param upperLeft - the left top corner of the block
      * @param width     - the width of the block
@@ -139,7 +146,7 @@ public class Paddle implements Sprite, Collidable {
      */
     @Override
     public String getType() {
-        return "Paddle";
+        return "game.engine.actors.Paddle";
     }
 
     /**

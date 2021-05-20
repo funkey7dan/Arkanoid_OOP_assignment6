@@ -1,4 +1,7 @@
-//XXXXXXXXX
+package game.engine.actors.collidables;//XXXXXXXXX
+
+import game.ui.shapes.Line;
+import game.ui.shapes.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +9,7 @@ import java.util.List;
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object GameEnvironment.
+ * A class for the object Game.Engine.Actors.Collidables.GameEnvironment.
  * Has an array of all the collidable objects in the game.
  * Supporting adding new collidable objects, and queries about existing.
  */
@@ -40,7 +43,7 @@ public class GameEnvironment {
      * about the closest collision that is going to occur.
      *
      * @param trajectory line of movement of the object
-     * @return the CollisionInfo about the closest obstacle to the object
+     * @return the Game.Engine.Actors.Collidables.CollisionInfo about the closest obstacle to the object
      */
     public CollisionInfo getClosestCollision(Line trajectory) {
         Collidable closestObject;

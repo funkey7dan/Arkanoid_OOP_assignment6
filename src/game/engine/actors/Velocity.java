@@ -1,9 +1,11 @@
-//XXXXXXXXX
+package game.engine.actors;//XXXXXXXXX
+
+import game.ui.shapes.Point;
 
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * Velocity specifies the change in position on the `x` and the `y` axes.
+ * game.engine.actors.Velocity specifies the change in position on the `x` and the `y` axes.
  * Supports applying the change in position to a given point, and the reverse of it.
  */
 public class Velocity {
@@ -18,7 +20,7 @@ public class Velocity {
     private static final double DELTA = 3;
 
     /**
-     * Constructor for Velocity.
+     * Constructor for game.engine.actors.Velocity.
      *
      * @param dx - the horizontal component of the velocity
      * @param dy - the vertical component of the velocity

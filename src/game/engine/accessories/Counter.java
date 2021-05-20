@@ -1,3 +1,5 @@
+package game.engine.accessories;
+
 public class Counter {
     private int count = 0;
 
@@ -6,7 +8,7 @@ public class Counter {
      *
      * @param number - the number we add
      */
-    void increase(int number) {
+    public void increase(int number) {
         count += number;
     }
 
@@ -15,7 +17,7 @@ public class Counter {
      *
      * @param number - the number we subtract
      */
-    void decrease(int number) {
+    public void decrease(int number) {
         count -= number;
     }
 
@@ -23,7 +25,7 @@ public class Counter {
     /**
      * @return current count.
      */
-    int getValue() {
+    public int getValue() {
         return count;
     }
 }

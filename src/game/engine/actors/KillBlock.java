@@ -1,8 +1,12 @@
+package game.engine.actors;
+
 import biuoop.DrawSurface;
+import game.ui.shapes.Point;
+import game.ui.shapes.Rectangle;
 
 public class KillBlock extends Block {
     /**
-     * Constructor for Block.
+     * Constructor for game.engine.actors.Block.
      *
      * @param upperLeft - the left top corner of the block
      * @param width     - the width of the block

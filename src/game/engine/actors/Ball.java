@@ -1,6 +1,13 @@
-//ID: ***REMOVED***
+package game.engine.actors;//ID: ***REMOVED***
 
+import game.engine.actors.collidables.Collidable;
+import game.engine.actors.collidables.CollisionInfo;
+import game.engine.actors.collidables.GameEnvironment;
+import game.engine.actors.sprites.Sprite;
+import game.Game;
 import biuoop.DrawSurface;
+import game.ui.shapes.Line;
+import game.ui.shapes.Point;
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
@@ -12,7 +19,7 @@ import java.util.Comparator;
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Ball.
+ * A class for the object game.engine.actors.Ball.
  * Has attributes of center, radius, color , velocity and the limits of the frame it's located in.
  * Supports moving one step or moving one step with a change of color after bouncing off the bounds.
  */

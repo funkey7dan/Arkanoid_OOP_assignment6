@@ -53,7 +53,7 @@
        <property name="format" value="\s+$"/>
        <property name="minimum" value="0"/>
        <property name="maximum" value="0"/>
-       <property name="message" value="Line has trailing spaces."/>
+       <property name="message" value="game.ui.shapes.Line has trailing spaces."/>
     </module>
 
     <!-- Checks for Headers                                -->
@@ -95,7 +95,7 @@
         <!-- Checks for Size Violations.                    -->
         <!-- See http://checkstyle.sf.net/config_sizes.html -->       
         <module name="LineLength">
-            <!-- Line getLength of 120 instead of the defalult 80 -->
+            <!-- game.ui.shapes.Line getLength of 120 instead of the defalult 80 -->
             <property name="max" value="120"/>
         </module>
         <module name="MethodLength"/>

@@ -1,6 +1,13 @@
-//ID: ***REMOVED***
+package game.engine.actors;//ID: ***REMOVED***
 
+import game.engine.actors.collidables.Collidable;
+import game.engine.actors.sprites.Sprite;
+import game.Game;
 import biuoop.DrawSurface;
+import game.engine.listeners.HitListener;
+import game.engine.listeners.HitNotifier;
+import game.ui.shapes.Point;
+import game.ui.shapes.Rectangle;
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
@@ -12,7 +19,7 @@ import java.util.List;
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Block.
+ * A class for the object game.engine.actors.Block.
  * Has attributes of the rectangle that holds its shape, the color of the block and the texture overlay.
  * Supports moving one step or moving one step with a change of color after bouncing off the bounds.
  */
@@ -25,7 +32,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     private ArrayList<HitListener> hitListeners = new ArrayList<>();
 
     /**
-     * Constructor for Block.
+     * Constructor for game.engine.actors.Block.
      *
      * @param upperLeft - the left top corner of the block
      * @param width     - the width of the block
@@ -137,7 +144,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     @Override
     public String getType() {
-        return "Block";
+        return "game.engine.actors.Block";
     }
 
     /**

@@ -1,13 +1,18 @@
-//ID: ***REMOVED***
+package game.engine.actors;//ID: ***REMOVED***
 
+import game.engine.actors.collidables.Collidable;
+import game.engine.actors.sprites.Sprite;
+import game.Game;
 import biuoop.DrawSurface;
+import game.ui.shapes.Point;
+import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Frame.
+ * A class for the object game.engine.actors.Frame.
  * Has attributes of the rectangle that holds its shape, the color of it's block.
  */
 public class Frame implements Collidable, Sprite {
@@ -15,7 +20,7 @@ public class Frame implements Collidable, Sprite {
     private Color color = Color.blue;
 
     /**
-     * Constructor for Frame. creates a rectangle for the frame.
+     * Constructor for game.engine.actors.Frame. creates a rectangle for the frame.
      *
      * @param upperLeft - the left top corner of the frame
      * @param width     - the width of the frame
@@ -94,6 +99,6 @@ public class Frame implements Collidable, Sprite {
      */
     @Override
     public String getType() {
-        return "Frame";
+        return "game.engine.actors.Frame";
     }
 }

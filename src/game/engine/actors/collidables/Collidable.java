@@ -1,4 +1,10 @@
-//ID: ***REMOVED***
+package game.engine.actors.collidables;//ID: ***REMOVED***
+
+import game.Game;
+import game.engine.actors.Ball;
+import game.engine.actors.Velocity;
+import game.ui.shapes.Point;
+import game.ui.shapes.Rectangle;
 
 /**
  * The interface for hittable objects.

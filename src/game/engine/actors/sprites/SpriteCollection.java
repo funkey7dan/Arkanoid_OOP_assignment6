@@ -1,3 +1,5 @@
+package game.engine.actors.sprites;
+
 import biuoop.DrawSurface;
 
 import java.util.ArrayList;
@@ -6,7 +8,7 @@ import java.util.List;
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object SpriteCollection.
+ * A class for the object Game.Engine.Actors.Sprites.SpriteCollection.
  * Hold a list of all sprites in our environment.
  * Supports adding new ones,drawing all of them and notifying all of them of the inevitable passage of time.
  */

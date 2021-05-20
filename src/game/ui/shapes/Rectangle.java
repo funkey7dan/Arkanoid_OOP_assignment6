@@ -1,4 +1,5 @@
-package game.ui.shapes;//XXXXXXXXX
+//XXXXXXXXX
+package game.ui.shapes;
 
 import java.util.ArrayList;
 import java.util.List;

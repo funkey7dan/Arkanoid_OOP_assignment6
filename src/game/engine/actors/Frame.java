@@ -1,4 +1,5 @@
-package game.engine.actors;//XXXXXXXXX
+//XXXXXXXXX
+package game.engine.actors;
 
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.sprites.Sprite;
@@ -16,7 +17,7 @@ import java.awt.Color;
  * Has attributes of the rectangle that holds its shape, the color of it's block.
  */
 public class Frame implements Collidable, Sprite {
-    private Rectangle rect;
+    private final Rectangle rect;
     private Color color = Color.blue;
 
     /**
@@ -94,11 +95,4 @@ public class Frame implements Collidable, Sprite {
         g.addCollidable(this);
     }
 
-    /**
-     * @return returns the type of object.
-     */
-    @Override
-    public String getType() {
-        return "game.engine.actors.Frame";
-    }
 }

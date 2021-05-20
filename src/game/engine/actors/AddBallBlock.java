@@ -1,12 +1,19 @@
+//XXXXXXXXX
 package game.engine.actors;
 
 import biuoop.DrawSurface;
 import game.ui.shapes.Point;
 import game.ui.shapes.Rectangle;
 
+/**
+ * /**
+ * * @author Daniel Bronfman
+ * * A class for the object AddBallBlock - a special block that spawns a new ball upon being hit.
+ */
 public class AddBallBlock extends Block {
+
     /**
-     * Constructor for game.engine.actors.Block.
+     * Constructor for AddBallBlock.
      *
      * @param upperLeft - the left top corner of the block
      * @param width     - the width of the block

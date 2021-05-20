@@ -1,11 +1,18 @@
-package game;//XXXXXXXXX
+//XXXXXXXXX
+
+package game;
 
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
 import game.engine.accessories.Counter;
 import game.engine.actors.Frame;
-import game.engine.actors.*;
+import game.engine.actors.Paddle;
+import game.engine.actors.Velocity;
+import game.engine.actors.Ball;
+import game.engine.actors.Block;
+import game.engine.actors.KillBlock;
+import game.engine.actors.AddBallBlock;
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.collidables.GameEnvironment;
 import game.engine.actors.sprites.Sprite;
@@ -19,7 +26,8 @@ import game.ui.gameinfo.ScoreIndicator;
 import game.ui.shapes.Point;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Image;
+import java.awt.Color;
 import java.io.File;
 import java.util.Random;
 
@@ -28,7 +36,7 @@ import java.util.Random;
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
  * A class for the object Game.Engine.Animation.Game.
- * Has attributes of the having a Game.Engine.Actors.Sprites.Sprite Collection, the relevant Game.Engine.Animation.Game environment, gui.
+ * Has attributes of the having a Game.Engine.Actors.Sprites.Sprite Collection, the relevant gui.
  * Hold the information about the size of the GUI, and the background image for the game.
  * Supports adding all the hittable objects to the game environment, and also the Sprites.
  * Can initialize the game, and run it.
@@ -72,9 +80,9 @@ public class Game {
     private static final int BLOCK_COLUMNS = 5;
 
     // counters
-    private Counter currentBlocks = new Counter();
-    private Counter currentBalls = new Counter();
-    private Counter currentScore = new Counter();
+    private final Counter currentBlocks = new Counter();
+    private final Counter currentBalls = new Counter();
+    private final Counter currentScore = new Counter();
 
     //Flags
     private Boolean noDeathFlag = false;
@@ -177,12 +185,11 @@ public class Game {
             for (int j = i; j <= BLOCK_ROWS; j++) {
                 int randI = rand1.nextInt(101);
                 int randJ = rand1.nextInt(101);
-                Block block = null;
+                Block block;
                 if (randI == i) {
                     block = new KillBlock(new Point(BLOCK_START_X + j * BLOCK_WIDTH,
                             BLOCK_START_Y + BLOCK_HEIGHT * i), BLOCK_WIDTH, BLOCK_HEIGHT);
                     block.addHitListener(ballRemover);
-                    currentBlocks.decrease(1);
                 } else if (randJ == j) {
                     block = new AddBallBlock(new Point(BLOCK_START_X + j * BLOCK_WIDTH,
                             BLOCK_START_Y + BLOCK_HEIGHT * i), BLOCK_WIDTH, BLOCK_HEIGHT);
@@ -216,7 +223,6 @@ public class Game {
                 }
                 currentBlocks.increase(1);
                 block.addToGame(this);
-                //block.addHitListener(phl);TODO remove
                 block.addHitListener(blockRemover);
                 block.addHitListener(scoreListener);
             }
@@ -284,6 +290,9 @@ public class Game {
         return currentScore;
     }
 
+    /**
+     * Turns no death mode on. (The balls don't disappear)
+     */
     public void setNoDeathFlag() {
         noDeathFlag = true;
     }
@@ -297,6 +306,11 @@ public class Game {
         boolean winFlag = false;
         boolean loseFlag = false;
         while (true) {
+
+            if (currentBlocks.getValue() == 0) {
+                winFlag = true;
+                currentScore.increase(100);
+            }
 
             long startTime = System.currentTimeMillis(); // timing
             DrawSurface d = gui.getDrawSurface();
@@ -314,10 +328,7 @@ public class Game {
                 gui.close();
                 return;
             }
-            if (currentBlocks.getValue() == 0) {
-                winFlag = true;
-                currentScore.increase(100);
-            }
+
             if (currentBalls.getValue() == 0) {
                 loseFlag = true;
             }

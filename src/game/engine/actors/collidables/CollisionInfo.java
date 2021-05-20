@@ -1,4 +1,5 @@
-package game.engine.actors.collidables;//XXXXXXXXX
+//XXXXXXXXX
+package game.engine.actors.collidables;
 
 import game.ui.shapes.Point;
 

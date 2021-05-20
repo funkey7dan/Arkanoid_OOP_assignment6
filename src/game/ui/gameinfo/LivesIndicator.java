@@ -1,3 +1,4 @@
+//XXXXXXXXX
 package game.ui.gameinfo;
 
 import game.engine.actors.sprites.Sprite;
@@ -6,9 +7,17 @@ import biuoop.DrawSurface;
 
 import java.awt.Color;
 
+/**
+ * A class for the Lives Indicator which shows the player the number of balls he has left on the screen.
+ */
 public class LivesIndicator implements Sprite {
-    private Game game;
+    private final Game game;
 
+    /**
+     * Constructor.
+     *
+     * @param game - the game the lives are in.
+     */
     public LivesIndicator(Game game) {
         this.game = game;
     }
@@ -26,7 +35,7 @@ public class LivesIndicator implements Sprite {
         int lives = game.getCurrentBalls().getValue();
         String s = String.valueOf(lives);
         //d.drawText(55, 30, s, 16);
-        d.drawText(10, 30, "Lives: "+s, 16);
+        d.drawText(10, 30, "Lives: " + s, 16);
 
     }
 

@@ -1,4 +1,5 @@
-package game.engine.actors.collidables;//XXXXXXXXX
+//XXXXXXXXX
+package game.engine.actors.collidables;
 
 import game.ui.shapes.Line;
 import game.ui.shapes.Point;
@@ -16,7 +17,7 @@ import java.util.List;
 public class GameEnvironment {
 
     //List of all obstacles in our environment
-    private List<Collidable> collidableList = new ArrayList<>();
+    private final List<Collidable> collidableList = new ArrayList<>();
 
     /**
      * Add the given collidable to the environment.

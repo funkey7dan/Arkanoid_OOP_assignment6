@@ -1,4 +1,5 @@
-package game.engine.actors;//XXXXXXXXX
+//XXXXXXXXX
+package game.engine.actors;
 
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.collidables.CollisionInfo;
@@ -345,7 +346,7 @@ public class Ball implements Sprite {
     /**
      * Receives a collision info as an input, and tells us what direction the hit came from.
      *
-     * @param collision - the colllision we want to find the directrion of.
+     * @param collision - the collision we want to find the direction of.
      * @return - a string containing the direction of the hit.
      */
     public String checkCollisionDirection(CollisionInfo collision) {
@@ -460,7 +461,7 @@ public class Ball implements Sprite {
      */
     public void addToGame(Game g) {
         g.addSprite(this);
-        this.setGuiSize(g.getGuiWidth(), g.getGuiHeight());
+        this.setGuiSize(Game.getGuiWidth(), Game.getGuiHeight());
         this.setGameEnvironment(g.getEnvironment());
         this.game = g;
     }
@@ -486,6 +487,9 @@ public class Ball implements Sprite {
         }
     }
 
+    /**
+     * Creates a new ball at the location of this ball, that moves in the opposite direction.
+     */
     public void spawnBall() {
         Ball child = new Ball(this);
         child.setVelocity(-this.getVelocity().getDx(), -this.getVelocity().getDy());

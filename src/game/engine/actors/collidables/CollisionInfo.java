@@ -1,4 +1,5 @@
-package game.engine.actors.collidables;//ID: ***REMOVED***
+//ID: ***REMOVED***
+package game.engine.actors.collidables;
 
 import game.ui.shapes.Point;
 

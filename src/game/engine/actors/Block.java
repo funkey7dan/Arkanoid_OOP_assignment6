@@ -1,4 +1,5 @@
-package game.engine.actors;//ID: ***REMOVED***
+//ID: ***REMOVED***
+package game.engine.actors;
 
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.sprites.Sprite;
@@ -29,7 +30,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     private Image texture;
     private Image icon;
     private static final int BLOCK_WIDTH = 50;
-    private ArrayList<HitListener> hitListeners = new ArrayList<>();
+    private final ArrayList<HitListener> hitListeners = new ArrayList<>();
 
     /**
      * Constructor for game.engine.actors.Block.
@@ -139,13 +140,6 @@ public class Block implements Collidable, Sprite, HitNotifier {
         g.removeCollidable(this);
     }
 
-    /**
-     * @return returns the type of object.
-     */
-    @Override
-    public String getType() {
-        return "game.engine.actors.Block";
-    }
 
     /**
      * Sets the texture field.
@@ -202,11 +196,11 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * Notifies the hit listeners a hit with the hitter  occurred.
      *
-     * @param hitter- the ball that hit this block.
+     * @param hitter - the ball that hit this block.
      */
     private void notifyHit(Ball hitter) {
         // Make a copy of the hitListeners before iterating over them.
-        List<HitListener> listeners = new ArrayList<HitListener>(this.hitListeners);
+        List<HitListener> listeners = new ArrayList<>(this.hitListeners);
 
         // Notify all listeners about a hit event:
         for (HitListener hl : listeners) {

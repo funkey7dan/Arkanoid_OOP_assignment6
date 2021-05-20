@@ -1,4 +1,5 @@
-package game.engine.actors;//ID: ***REMOVED***
+//ID: ***REMOVED***
+package game.engine.actors;
 
 import game.ui.shapes.Point;
 
@@ -11,10 +12,10 @@ import game.ui.shapes.Point;
 public class Velocity {
 
     // the horizontal component of the velocity
-    private double dx;
+    private final double dx;
 
     // the vertical component of the velocity
-    private double dy;
+    private final double dy;
 
     // the difference in the position we want to set
     private static final double DELTA = 3;

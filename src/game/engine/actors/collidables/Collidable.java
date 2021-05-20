@@ -1,4 +1,5 @@
-package game.engine.actors.collidables;//ID: ***REMOVED***
+//ID: ***REMOVED***
+package game.engine.actors.collidables;
 
 import game.Game;
 import game.engine.actors.Ball;
@@ -28,6 +29,7 @@ public interface Collidable {
      *
      * @param collisionPoint  - the collision point with the object
      * @param currentVelocity - the current velocity of the hitting object
+     * @param hitter          - the ball that hit.
      * @return the new velocity for the hitting object.
      */
     Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity);
@@ -38,11 +40,6 @@ public interface Collidable {
      * @param g - the game we want to add to.
      */
     void addToGame(Game g);
-
-    /**
-     * @return returns the type of object.
-     */
-    String getType();//TODO check if redundant
 
 
 }

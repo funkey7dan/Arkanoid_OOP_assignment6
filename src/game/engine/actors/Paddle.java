@@ -142,14 +142,6 @@ public class Paddle implements Sprite, Collidable {
     }
 
     /**
-     * @return returns the type of object.
-     */
-    @Override
-    public String getType() {
-        return "game.engine.actors.Paddle";
-    }
-
-    /**
      * Adds a key press sensor to the paddle.
      *
      * @param keyboard1 the keyboard we want to set.
@@ -157,4 +149,5 @@ public class Paddle implements Sprite, Collidable {
     public void setKeyboard(biuoop.KeyboardSensor keyboard1) {
         this.keyboard = keyboard1;
     }
+
 }

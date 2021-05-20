@@ -1,4 +1,5 @@
-package game.ui.shapes;//ID: ***REMOVED***
+//ID: ***REMOVED***
+package game.ui.shapes;
 
 import java.util.List;
 

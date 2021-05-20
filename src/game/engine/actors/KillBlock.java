@@ -1,9 +1,15 @@
+//ID: ***REMOVED***
 package game.engine.actors;
 
 import biuoop.DrawSurface;
 import game.ui.shapes.Point;
 import game.ui.shapes.Rectangle;
 
+/**
+ * /**
+ * * @author Daniel Bronfman
+ * * A class for the object KillBlock - a special block that removed a ball upon being hit.
+ */
 public class KillBlock extends Block {
     /**
      * Constructor for game.engine.actors.Block.

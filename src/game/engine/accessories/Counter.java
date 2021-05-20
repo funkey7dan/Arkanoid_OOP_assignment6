@@ -1,5 +1,10 @@
+// ID: ***REMOVED***
 package game.engine.accessories;
 
+/**
+ * A class for the counter object which is used to count occurrences.
+ * Supports increasing and decreasing the count, and returning the current value.
+ */
 public class Counter {
     private int count = 0;
 
@@ -13,7 +18,7 @@ public class Counter {
     }
 
     /**
-     * substract number from current count.
+     * subtract number from current count.
      *
      * @param number - the number we subtract
      */

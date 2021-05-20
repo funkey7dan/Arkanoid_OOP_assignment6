@@ -1,3 +1,4 @@
+//ID:***REMOVED***
 package game.ui.gameinfo;
 
 import game.engine.actors.sprites.Sprite;
@@ -6,9 +7,17 @@ import biuoop.DrawSurface;
 
 import java.awt.Color;
 
+/**
+ * A class for the Lives Indicator which shows the player his score on the screen.
+ */
 public class ScoreIndicator implements Sprite {
     private Game game;
 
+    /**
+     * Constructor.
+     *
+     * @param game - the game the indicator belongs to.
+     */
     public ScoreIndicator(Game game) {
         this.game = game;
         addToGame(game);
@@ -27,7 +36,7 @@ public class ScoreIndicator implements Sprite {
         int score = game.getCurrentScore().getValue();
         String s = String.valueOf(score);
         //d.drawText(355, 30, s, 16);
-        d.drawText(700, 30, "Score: " +s, 16);
+        d.drawText(700, 30, "Score: " + s, 16);
     }
 
     /**

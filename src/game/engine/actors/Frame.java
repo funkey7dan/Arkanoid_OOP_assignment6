@@ -3,7 +3,7 @@ package game.engine.actors;
 
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.sprites.Sprite;
-import game.Game;
+import game.engine.levels.GameLevel;
 import biuoop.DrawSurface;
 import game.ui.shapes.Point;
 import game.ui.shapes.Rectangle;
@@ -90,7 +90,7 @@ public class Frame implements Collidable, Sprite {
     }
 
     @Override
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
         g.addCollidable(this);
     }

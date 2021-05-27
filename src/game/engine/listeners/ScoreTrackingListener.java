@@ -22,6 +22,7 @@ public class ScoreTrackingListener implements HitListener {
 
     @Override
     public void hitEvent(Block beingHit, Ball hitter) {
+        beingHit.removeHitListener(this);
         currentScore.increase(5);
     }
 }

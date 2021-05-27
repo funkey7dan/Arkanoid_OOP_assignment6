@@ -33,4 +33,12 @@ public class Counter {
     public int getValue() {
         return count;
     }
+
+    /**
+     *
+     * @param value the value we set.
+     */
+    public void setValue(int value) {
+        count = value;
+    }
 }

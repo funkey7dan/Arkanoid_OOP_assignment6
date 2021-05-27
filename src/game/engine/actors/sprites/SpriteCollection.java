@@ -31,6 +31,13 @@ public class SpriteCollection {
     }
 
     /**
+     * Clear the list of sprites.
+     */
+    public void clear() {
+        spriteList.clear();
+    }
+
+    /**
      * call timePassed() on all sprites.
      */
     public void notifyAllTimePassed() {

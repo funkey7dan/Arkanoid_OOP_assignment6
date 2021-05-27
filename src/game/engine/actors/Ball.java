@@ -5,15 +5,13 @@ import game.engine.actors.collidables.Collidable;
 import game.engine.actors.collidables.CollisionInfo;
 import game.engine.actors.collidables.GameEnvironment;
 import game.engine.actors.sprites.Sprite;
-import game.Game;
+import game.engine.levels.GameLevel;
 import biuoop.DrawSurface;
 import game.ui.shapes.Line;
 import game.ui.shapes.Point;
 
-import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.awt.Color;
-import java.io.File;
 import java.util.Random;
 import java.util.Comparator;
 
@@ -28,7 +26,7 @@ public class Ball implements Sprite {
     private Point center;
 
     // size\radius of the ball
-    private final int r;
+    private int r;
     private java.awt.Color color;
     private Velocity v;
     private Line trajectory;
@@ -38,12 +36,13 @@ public class Ball implements Sprite {
     private int guiWidth;
     private int frameX = 0;
     private int frameY = 0;
+    private boolean laserFlag = false;
 
     //the game environment
     private GameEnvironment ge;
 
     // the game to which the ball belongs.
-    private Game game;
+    private GameLevel gameLevel;
 
     // the image we use for the ball texture
     private Image texture;
@@ -84,6 +83,14 @@ public class Ball implements Sprite {
         this.r = ball.r;
         this.center = new Point(ball.getX(), ball.getY());
         this.color = ball.color;
+    }
+
+    public boolean isLaserFlag() {
+        return laserFlag;
+    }
+
+    public void setLaserFlag(boolean laserFlag) {
+        this.laserFlag = laserFlag;
     }
 
     /**
@@ -287,6 +294,8 @@ public class Ball implements Sprite {
         }
         surface.setColor(this.color);
         surface.fillCircle(this.getX(), this.getY(), this.getSize());
+        surface.setColor(Color.black);
+        surface.drawCircle(this.getX(), this.getY(), this.getSize());
         surface.drawImage((int) this.getCenter().getX(),
                 (int) this.getCenter().getY(), texture);
     }
@@ -303,17 +312,8 @@ public class Ball implements Sprite {
      */
     public void moveOneStep() {
 
-        // create a Random generator
-        Random rand = new Random();
+
         CollisionInfo collision;
-
-        // randomize each color
-        int red = rand.nextInt(255);
-        int green = rand.nextInt(255);
-        int blue = rand.nextInt(255);
-
-        // mixes the random values for each color to get a new shade
-        Color randColor = new Color(red, green, blue);
 
         // find the closest collision to the object on the current trajectory
         collision = this.ge.getClosestCollision(this.trajectory);
@@ -342,6 +342,7 @@ public class Ball implements Sprite {
         returnToBounds();
         this.setTrajectory(this.v);
     }
+
 
     /**
      * Receives a collision info as an input, and tells us what direction the hit came from.
@@ -459,11 +460,13 @@ public class Ball implements Sprite {
      *
      * @param g - the game we want to add to.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
-        this.setGuiSize(Game.getGuiWidth(), Game.getGuiHeight());
+        this.setGuiSize(GameLevel.getGuiWidth(), GameLevel.getGuiHeight());
         this.setGameEnvironment(g.getEnvironment());
-        this.game = g;
+        this.gameLevel = g;
+        g.setNumberOfBalls(g.numberOfBalls() + 1);
+        g.addBall(this);
     }
 
     /**
@@ -471,20 +474,10 @@ public class Ball implements Sprite {
      *
      * @param g - the game we want to remove the block from.
      */
-    public void removeFromGame(Game g) {
+    public void removeFromGame(GameLevel g) {
         g.removeSprite(this);
-    }
-
-    /**
-     * Sets the texture field.
-     * We add the path to the image we use for the texture.
-     */
-    public void setTexture() {
-        try {
-            this.texture = ImageIO.read(new File("textures/ball.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        g.setNumberOfBalls(g.numberOfBalls() - 1);
+        g.removeBall(this);
     }
 
     /**
@@ -493,7 +486,35 @@ public class Ball implements Sprite {
     public void spawnBall() {
         Ball child = new Ball(this);
         child.setVelocity(-this.getVelocity().getDx(), -this.getVelocity().getDy());
-        child.addToGame(game);
+        child.setR(this.r - 1);
+        this.setR(this.r - 1);
+        child.addToGame(gameLevel);
+    }
+
+    /**
+     * Creates a new ball at the location of this ball, that moves in the opposite direction.
+     */
+    public void spewBalls() {
+        if (gameLevel.getCurrentBalls().getValue() >= 1000) {
+            return;
+        }
+        for (int i = 0; i < 6; i++) {
+            Ball child = new Ball(this);
+            Velocity vChild = Velocity.fromAngleAndSpeed(60 * i, 7);
+            child.setVelocity(vChild);
+            if (this.r >= 3) {
+                child.setR(this.r - 1);
+            } else {
+                child.setR(this.r);
+            }
+            child.addToGame(gameLevel);
+        }
+        this.removeFromGame(gameLevel);
+
+    }
+
+    public void setR(int r) {
+        this.r = r;
     }
 }
 

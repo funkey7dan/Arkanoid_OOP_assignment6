@@ -2,7 +2,7 @@ package game.engine.actors;
 
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.sprites.Sprite;
-import game.Game;
+import game.engine.levels.GameLevel;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 import game.ui.shapes.Point;
@@ -22,8 +22,8 @@ public class Paddle implements Sprite, Collidable {
     private Block block;
     private Rectangle rect;
     private Point middle;
-    private final Color color = new Color(200, 15, 25);
-    private static final int SPEED = 7;
+    private Color color;
+    private int speed = 7;
     private static int guiHeight;
     private static int guiWidth;
     private static final int FONT_SIZE = 12;
@@ -40,6 +40,13 @@ public class Paddle implements Sprite, Collidable {
         this.block = new Block(upperLeft, width, height);
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
+        this.color = new Color(200, 15, 25);
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
+        this.rect = block.getCollisionRectangle();
+        this.middle = rect.getTopSide().middle();
     }
 
     /**
@@ -51,6 +58,7 @@ public class Paddle implements Sprite, Collidable {
         this.block = block;
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
+        this.color = new Color(200, 15, 25);
 
     }
 
@@ -59,7 +67,7 @@ public class Paddle implements Sprite, Collidable {
      * according to the movement speed.
      */
     public void moveLeft() {
-        this.block = new Block(new Point(rect.getUpperLeft().getX() - SPEED, rect.getUpperLeft().getY()),
+        this.block = new Block(new Point(rect.getUpperLeft().getX() - speed, rect.getUpperLeft().getY()),
                 rect.getWidth(), rect.getHeight());
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
@@ -70,7 +78,7 @@ public class Paddle implements Sprite, Collidable {
      * according to the movement speed.
      */
     public void moveRight() {
-        this.block = new Block(new Point(rect.getUpperLeft().getX() + SPEED, rect.getUpperLeft().getY()),
+        this.block = new Block(new Point(rect.getUpperLeft().getX() + speed, rect.getUpperLeft().getY()),
                 rect.getWidth(), rect.getHeight());
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
@@ -83,18 +91,34 @@ public class Paddle implements Sprite, Collidable {
             moveLeft();
         }
         if (keyboard.isPressed(KeyboardSensor.RIGHT_KEY)
-                && ((this.rect.getUpperRight().getX()) + SPEED <= guiWidth)) {
+                && ((this.rect.getUpperRight().getX()) + speed <= guiWidth)) {
             moveRight();
         }
     }
 
     @Override
     public void drawOn(DrawSurface surface) {
-
+        surface.setColor(Color.BLACK);
+        surface.drawCircle((int) this.rect.getLeftSide().middle().getX(), (int) this.rect.getLeftSide().middle().getY(),
+                (int) this.rect.getLeftSide().length() / 2);
+        surface.drawCircle((int) this.rect.getRightSide().middle().getX(),
+                (int) this.rect.getRightSide().middle().getY(),
+                ((int) this.rect.getRightSide().length() / 2));
+        surface.setColor(Color.white);
+        surface.fillCircle((int) this.rect.getLeftSide().middle().getX(), (int) this.rect.getLeftSide().middle().getY(),
+                (int) this.rect.getLeftSide().length() / 2);
+        surface.fillCircle((int) this.rect.getRightSide().middle().getX(),
+                (int) this.rect.getRightSide().middle().getY(),
+                (int) this.rect.getRightSide().length() / 2);
         this.block.setColor(this.color);
+
+
+
+
+        //surface.setColor(this.color);
         this.block.drawOn(surface);
-        surface.drawText((int) rect.getUpperLeft().getX() + 25, (int) rect.getUpperLeft().getY() + 15,
-                "Player 1", FONT_SIZE);
+//        surface.drawText((int) rect.getUpperLeft().getX() + 25, (int) rect.getUpperLeft().getY() + 15,
+//                "Player 1", FONT_SIZE);
     }
 
     @Override
@@ -108,15 +132,15 @@ public class Paddle implements Sprite, Collidable {
         if (this.rect.getTopSide().isPointOnSegment(collisionPoint)) {
             switch (this.rect.getTopSide().whatPart(collisionPoint)) {
                 case 0:
-                    return Velocity.fromAngleAndSpeed(300, SPEED);
+                    return Velocity.fromAngleAndSpeed(300, speed);
                 case 1:
-                    return Velocity.fromAngleAndSpeed(330, SPEED);
+                    return Velocity.fromAngleAndSpeed(330, speed);
                 case 2:
                     return new Velocity(currentVelocity.getDx(), -currentVelocity.getDy());
                 case 3:
-                    return Velocity.fromAngleAndSpeed(30, SPEED);
+                    return Velocity.fromAngleAndSpeed(30, speed);
                 case 4:
-                    return Velocity.fromAngleAndSpeed(60, SPEED);
+                    return Velocity.fromAngleAndSpeed(60, speed);
                 default:
                     break;
             } // check if the hit is on a vertical plane.
@@ -133,12 +157,12 @@ public class Paddle implements Sprite, Collidable {
     }
 
     @Override
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         setKeyboard(g.getGui().getKeyboardSensor());
         g.addSprite(this);
         g.addCollidable(this);
-        guiHeight = Game.getGuiHeight();
-        guiWidth = Game.getGuiWidth();
+        guiHeight = GameLevel.getGuiHeight();
+        guiWidth = GameLevel.getGuiWidth();
     }
 
     /**
@@ -150,4 +174,29 @@ public class Paddle implements Sprite, Collidable {
         this.keyboard = keyboard1;
     }
 
+    public Point getMiddle() {
+        return middle;
+    }
+
+    /**
+     * @return the speed of the paddle.
+     */
+    public int getSPEED() {
+        return speed;
+    }
+
+    /**
+     * @param speed the speed we will assign.
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return this.color;
+    }
 }

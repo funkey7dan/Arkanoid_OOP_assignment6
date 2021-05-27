@@ -2,7 +2,7 @@
 package game.ui.gameinfo;
 
 import game.engine.actors.sprites.Sprite;
-import game.Game;
+import game.engine.levels.GameLevel;
 import biuoop.DrawSurface;
 
 import java.awt.Color;
@@ -11,15 +11,15 @@ import java.awt.Color;
  * A class for the Lives Indicator which shows the player the number of balls he has left on the screen.
  */
 public class LivesIndicator implements Sprite {
-    private final Game game;
+    private final GameLevel gameLevel;
 
     /**
      * Constructor.
      *
-     * @param game - the game the lives are in.
+     * @param gameLevel - the game the lives are in.
      */
-    public LivesIndicator(Game game) {
-        this.game = game;
+    public LivesIndicator(GameLevel gameLevel) {
+        this.gameLevel = gameLevel;
     }
 
     /**
@@ -30,12 +30,15 @@ public class LivesIndicator implements Sprite {
      */
     @Override
     public void drawOn(DrawSurface d) {
-        d.setColor(Color.white);
 
-        int lives = game.getCurrentBalls().getValue();
+
+        int lives = gameLevel.getLives();
         String s = String.valueOf(lives);
         //d.drawText(55, 30, s, 16);
-        d.drawText(10, 30, "Lives: " + s, 16);
+        d.setColor(Color.black);
+        d.drawText(8, 31, "Lives: " + s, 20);
+        d.setColor(Color.white);
+        d.drawText(10, 30, "Lives: " + s, 20);
 
     }
 
@@ -52,7 +55,7 @@ public class LivesIndicator implements Sprite {
      * @param g - the game we want to add to.
      */
     @Override
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
     }
 }

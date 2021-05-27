@@ -2,7 +2,7 @@
 package game.ui.gameinfo;
 
 import game.engine.actors.sprites.Sprite;
-import game.Game;
+import game.engine.levels.GameLevel;
 import biuoop.DrawSurface;
 
 import java.awt.Color;
@@ -11,16 +11,16 @@ import java.awt.Color;
  * A class for the Lives Indicator which shows the player his score on the screen.
  */
 public class ScoreIndicator implements Sprite {
-    private Game game;
+    private GameLevel gameLevel;
 
     /**
      * Constructor.
      *
-     * @param game - the game the indicator belongs to.
+     * @param gameLevel - the game the indicator belongs to.
      */
-    public ScoreIndicator(Game game) {
-        this.game = game;
-        addToGame(game);
+    public ScoreIndicator(GameLevel gameLevel) {
+        this.gameLevel = gameLevel;
+        addToGame(gameLevel);
     }
 
     /**
@@ -31,12 +31,17 @@ public class ScoreIndicator implements Sprite {
      */
     @Override
     public void drawOn(DrawSurface d) {
-        d.setColor(Color.white);
 
-        int score = game.getCurrentScore().getValue();
+
+        int score = gameLevel.getCurrentScore().getValue()
+                +
+                gameLevel.getTotalScore().getValue();
         String s = String.valueOf(score);
         //d.drawText(355, 30, s, 16);
-        d.drawText(700, 30, "Score: " + s, 16);
+        d.setColor(Color.black);
+        d.drawText(338, 31, "Score: " + s, 20);
+        d.setColor(Color.white);
+        d.drawText(340, 30, "Score: " + s, 20);
     }
 
     /**
@@ -52,7 +57,7 @@ public class ScoreIndicator implements Sprite {
      * @param g - the game we want to add to.
      */
     @Override
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
     }
 }

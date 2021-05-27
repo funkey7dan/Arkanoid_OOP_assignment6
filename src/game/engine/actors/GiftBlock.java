@@ -10,7 +10,7 @@ import game.ui.shapes.Rectangle;
  * * @author Daniel Bronfman
  * * A class for the object AddBallBlock - a special block that spawns a new ball upon being hit.
  */
-public class AddBallBlock extends Block {
+public class GiftBlock extends Block {
 
     /**
      * Constructor for AddBallBlock.
@@ -19,8 +19,9 @@ public class AddBallBlock extends Block {
      * @param width     - the width of the block
      * @param height    - the height of the block
      */
-    public AddBallBlock(Point upperLeft, double width, double height) {
-        super(upperLeft, width, height);
+    public GiftBlock(Point upperLeft, double width, double height) {
+        super(upperLeft, width, height);super.setGiftIcon();
+        super.setTexture();
     }
 
     /**
@@ -28,13 +29,21 @@ public class AddBallBlock extends Block {
      *
      * @param rec - the rectangle we use to build the block
      */
-    public AddBallBlock(Rectangle rec) {
+    public GiftBlock(Rectangle rec) {
         super(rec);
+        super.setGiftIcon();
+        super.setTexture();
+    }
+
+    public GiftBlock(Block block) {
+        super(block);
+        super.setGiftIcon();
+        super.setTexture();
     }
 
     @Override
     public void drawOn(DrawSurface surface) {
-        super.setGiftIcon();
+
         super.drawOn(surface);
     }
 

@@ -1,7 +1,7 @@
 //ID: ***REMOVED***
 package game.engine.actors.collidables;
 
-import game.Game;
+import game.engine.levels.GameLevel;
 import game.engine.actors.Ball;
 import game.engine.actors.Velocity;
 import game.ui.shapes.Point;
@@ -34,12 +34,13 @@ public interface Collidable {
      */
     Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity);
 
+
     /**
      * Adds the object to the game.
      *
      * @param g - the game we want to add to.
      */
-    void addToGame(Game g);
+    void addToGame(GameLevel g);
 
 
 }

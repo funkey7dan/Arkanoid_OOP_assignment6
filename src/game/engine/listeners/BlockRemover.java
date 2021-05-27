@@ -4,7 +4,7 @@ package game.engine.listeners;
 import game.engine.accessories.Counter;
 import game.engine.actors.Ball;
 import game.engine.actors.Block;
-import game.Game;
+import game.engine.levels.GameLevel;
 
 
 /**
@@ -12,24 +12,25 @@ import game.Game;
  * of the number of blocks that remain.
  */
 public class BlockRemover implements HitListener {
-    private Game game;
+    private GameLevel gameLevel;
     private Counter remainingBlocks;
 
     /**
      * Constructor.
      *
-     * @param game          - the game we listen to and remove blocks from.
-     * @param removedBlocks - the blocks we will remove.
+     * @param gameLevel       - the game we listen to and remove blocks from.
+     * @param remainingBlocks - the blocks we will remove.
      */
-    public BlockRemover(Game game, Counter removedBlocks) {
-        this.game = game;
-        remainingBlocks = removedBlocks;
+    public BlockRemover(GameLevel gameLevel, Counter remainingBlocks) {
+        this.gameLevel = gameLevel;
+        this.remainingBlocks = remainingBlocks;
     }
 
     @Override
     public void hitEvent(Block beingHit, Ball hitter) {
         beingHit.removeHitListener(this);
-        beingHit.removeFromGame(game);
+        beingHit.removeALLHitListener();
+        beingHit.removeFromGame(gameLevel);
         remainingBlocks.decrease(1);
     }
 }

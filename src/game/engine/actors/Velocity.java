@@ -20,6 +20,8 @@ public class Velocity {
     // the difference in the position we want to set
     private static final double DELTA = 3;
 
+    private static double speed;
+
     /**
      * Constructor for game.engine.actors.Velocity.
      *
@@ -42,6 +44,7 @@ public class Velocity {
      */
     public static Velocity fromAngleAndSpeed(double angle, double speed) {
 
+        setSpeed(speed);
         //convert the angle to Radians
         angle = Math.toRadians(angle);
 
@@ -52,6 +55,14 @@ public class Velocity {
         // cos(x) = Adjacent / hypotenuse
         double dy = -(Math.cos(angle) * speed);
         return new Velocity(Math.round(dx), Math.round(dy));
+    }
+
+    public static void setSpeed(double speed) {
+        Velocity.speed = speed;
+    }
+
+    public static double getSpeed() {
+        return speed;
     }
 
     //accessors

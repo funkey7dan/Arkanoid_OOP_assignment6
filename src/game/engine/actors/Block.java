@@ -3,7 +3,7 @@ package game.engine.actors;
 
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.sprites.Sprite;
-import game.Game;
+import game.engine.levels.GameLevel;
 import biuoop.DrawSurface;
 import game.engine.listeners.HitListener;
 import game.engine.listeners.HitNotifier;
@@ -12,8 +12,8 @@ import game.ui.shapes.Rectangle;
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.Color;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +27,7 @@ import java.util.List;
 public class Block implements Collidable, Sprite, HitNotifier {
     private final Rectangle rect;
     private Color color = Color.blue;
+    private BufferedImage bfTexture;
     private Image texture;
     private Image icon;
     private static final int BLOCK_WIDTH = 50;
@@ -53,6 +54,11 @@ public class Block implements Collidable, Sprite, HitNotifier {
         this.rect = rec;
     }
 
+    public Block(Block block) {
+        this.rect = block.rect;
+        this.color = block.color;
+    }
+
 
     @Override
     public Rectangle getCollisionRectangle() {
@@ -65,25 +71,27 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
         double newDx = currentVelocity.getDx(), newDy = currentVelocity.getDy();
 
-        // check if the hit is on a vertical plane
-        if (rect.getTopSide().isPointOnSegment(collisionPoint)
-                || rect.getBottomSide().isPointOnSegment(collisionPoint)) {
+        if (!hitter.isLaserFlag()) {
+            // check if the hit is on a vertical plane
+            if (rect.getTopSide().isPointOnSegment(collisionPoint)
+                    || rect.getBottomSide().isPointOnSegment(collisionPoint)) {
 
-            //change the direction of the balls movement to the opposite
-            newDy = -newDy;
+                //change the direction of the balls movement to the opposite
+                newDy = -newDy;
+            }
+            // check if the hit is on a horizontal plane
+            if (rect.getRightSide().isPointOnSegment(collisionPoint)
+                    || rect.getLeftSide().isPointOnSegment(collisionPoint)) {
+
+                //change the direction of the balls movement to the opposite
+                newDx = -newDx;
+            }
         }
-        // check if the hit is on a horizontal plane
-        if (rect.getRightSide().isPointOnSegment(collisionPoint)
-                || rect.getLeftSide().isPointOnSegment(collisionPoint)) {
-
-            //change the direction of the balls movement to the opposite
-            newDx = -newDx;
-        }
-
         notifyHit(hitter);
         return new Velocity(newDx, newDy);
 
     }
+
 
     @Override
     public void drawOn(DrawSurface surface) {
@@ -125,7 +133,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      *
      * @param g - the game we want to add to.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
         g.addCollidable(this);
     }
@@ -135,9 +143,10 @@ public class Block implements Collidable, Sprite, HitNotifier {
      *
      * @param g - the game we want to remove the block from.
      */
-    public void removeFromGame(Game g) {
+    public void removeFromGame(GameLevel g) {
         g.removeSprite(this);
         g.removeCollidable(this);
+        g.blocks().remove(this);
     }
 
 
@@ -147,15 +156,15 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     public void setTexture() {
         try {
-            if (this.rect.getWidth() <= BLOCK_WIDTH) {
-                this.texture = ImageIO.read(new File("textures/Shine2.png"));
-            } else {
-                this.texture = ImageIO.read(new File("textures/Shine_paddle2.png"));
-            }
-
-        } catch (Exception e) {
+            this.texture = ImageIO.read(getClass().getResource("/Shine2.png"));
+            this.texture = texture.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
+                    Image.SCALE_DEFAULT);
+            texture.setAccelerationPriority(1);
+        } catch (
+                Exception e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -164,7 +173,10 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     public void setSkullIcon() {
         try {
-            this.icon = ImageIO.read(new File("textures/Skull.png"));
+            this.icon = ImageIO.read(getClass().getResource("/Skull.png"));
+            this.icon = icon.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
+                    Image.SCALE_DEFAULT);
+            icon.setAccelerationPriority((float) 0.1);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,7 +189,10 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     public void setGiftIcon() {
         try {
-            this.icon = ImageIO.read(new File("textures/Gift.png"));
+            this.icon = ImageIO.read(getClass().getResource("/Gift.png"));
+            this.icon = icon.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
+                    Image.SCALE_DEFAULT);
+            icon.setAccelerationPriority((float) 0.1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -194,6 +209,14 @@ public class Block implements Collidable, Sprite, HitNotifier {
     }
 
     /**
+     * Remove all the hit listeners.
+     */
+    public void removeALLHitListener() {
+        hitListeners.clear();
+    }
+
+
+    /**
      * Notifies the hit listeners a hit with the hitter  occurred.
      *
      * @param hitter - the ball that hit this block.
@@ -206,5 +229,11 @@ public class Block implements Collidable, Sprite, HitNotifier {
         for (HitListener hl : listeners) {
             hl.hitEvent(this, hitter);
         }
+    }
+
+    public Gift spawnGift() {
+        double centerX = this.getCollisionRectangle().getBottomSide().middle().getX() - this.rect.getWidth() / 2;
+        double centerY = this.getCollisionRectangle().getBottomSide().middle().getY();
+        return new Gift(new Point(centerX, centerY), 15, Color.MAGENTA);
     }
 }

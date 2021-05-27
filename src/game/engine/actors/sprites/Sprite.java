@@ -1,6 +1,6 @@
 package game.engine.actors.sprites;
 
-import game.Game;
+import game.engine.levels.GameLevel;
 import biuoop.DrawSurface;
 
 
@@ -30,6 +30,6 @@ public interface Sprite {
      *
      * @param g - the game we want to add to.
      */
-    void addToGame(Game g);
+    void addToGame(GameLevel g);
 }
 

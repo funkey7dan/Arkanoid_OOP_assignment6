@@ -77,4 +77,8 @@ public class GameEnvironment {
     public List<Collidable> getCollidableList() {
         return collidableList;
     }
+
+    public void clear() {
+        collidableList.clear();
+    }
 }

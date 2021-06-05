@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class SpriteCollection {
 
-    private List<Sprite> spriteList = new ArrayList<>();
+    private final List<Sprite> spriteList = new ArrayList<>();
 
     /**
      * @param s the sprite we are adding.

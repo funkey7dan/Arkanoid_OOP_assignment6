@@ -6,6 +6,9 @@ import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
+/**
+ * The type Final four background.
+ */
 public class FinalFourBackground extends Background {
     /**
      * Constructor for game.engine.actors.Block.
@@ -44,9 +47,24 @@ public class FinalFourBackground extends Background {
         super.setColor(new Color(0, 50, 100));
         super.drawOn(d);
         d.setColor(Color.white);
+        d.setColor(new Color(100, 204, 250));
+
+        //rain1
         for (int i = 1; i < 10; i++) {
-            d.drawLine(130 + i * 7, 435, 110 + i * 8,600);
+            d.drawLine(130 + i * 7, 435, 110 + i * 8, 600);
         }
+
+        // rain2
+        for (int i = 1; i < 15; i++) {
+            d.drawLine(135 + 480 + i * 6, 435 - 150, 110 + 550 + i * 8, 600);
+        }
+        d.setColor(new Color(0, 50, 100));
+        for (int i = 1; i < 800; i += 5) {
+            d.drawLine(0, 435 - 150 + i, 800, 435 - 150 + i);
+            d.drawLine(0, 435 - 150 + i + 1, 800, 435 - 150 + i + 1);
+        }
+
+        // cloud1
         d.setColor(new Color(204, 204, 204));
         d.fillCircle(130, 435, 23);
         d.setColor(new Color(204, 204, 204));
@@ -58,20 +76,18 @@ public class FinalFourBackground extends Background {
         d.setColor(new Color(170, 170, 170));
         d.fillCircle(170, 450, 20);
 
+        // cloud2
+        d.setColor(new Color(170, 170, 170));
+        d.fillCircle(130 + 500, 435 - 150, 23);
+        d.setColor(new Color(170, 170, 170));
 
+        d.fillCircle(135 + 500, 450 - 150, 21);
+        d.setColor(new Color(187, 187, 187));
+        d.fillCircle(150 + 500, 430 - 150, 25);
+        d.setColor(new Color(204, 204, 204));
+        d.fillCircle(180 + 500, 430 - 150, 30);
 
-//        d.setColor(new Color(250, 250, 150));
-//        d.fillCircle(200, 140, 50);
-//        d.setColor(new Color(235, 200, 100));
-//        d.fillCircle(200, 140, 40);
-//        d.setColor(new Color(250, 250, 0));
-//        d.fillCircle(200, 140, 30);
-//        for (int i = 0; i < 800; i+=10) {
-//            d.drawLine(200, 140, i, 250);
-//        }
-//        d.setColor(new Color(250, 250, 250));
-//        d.fillCircle(200, 140, 5);
-
-
+        d.setColor(new Color(204, 204, 204));
+        d.fillCircle(170 + 500, 450 - 150, 20);
     }
 }

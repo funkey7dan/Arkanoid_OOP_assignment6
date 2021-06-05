@@ -1,3 +1,4 @@
+//***REMOVED***
 package game.engine.levels.backgrounds;
 
 import biuoop.DrawSurface;
@@ -8,6 +9,11 @@ import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
+/**
+ * The class for the object Background.
+ * It's the sprite that represents the background in a game level.
+ * Serves as template for the other backgrounds.
+ */
 public class Background implements Sprite {
 
     private final Rectangle rect;

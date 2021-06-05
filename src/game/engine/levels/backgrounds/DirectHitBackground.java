@@ -2,14 +2,14 @@ package game.engine.levels.backgrounds;
 
 import biuoop.DrawSurface;
 import game.engine.levels.GameLevel;
-import game.ui.shapes.Eye;
 import game.ui.shapes.Point;
 import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * The type Direct hit background.
+ */
 public class DirectHitBackground extends Background {
 
     /**
@@ -42,12 +42,6 @@ public class DirectHitBackground extends Background {
      */
     public DirectHitBackground(Rectangle rec) {
         super(rec);
-    }
-
-    @Override
-    public void timePassed() {
-        super.timePassed();
-
     }
 
     @Override

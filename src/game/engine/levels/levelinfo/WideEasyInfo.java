@@ -10,23 +10,29 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Wide easy info.
+ */
 public class WideEasyInfo implements LevelInformation {
     private static final int GUI_HEIGHT = 600;
     private static final int GUI_WIDTH = 800;
-    private int numberOfBalls;
-    private List<Velocity> initialBallVelocities = new ArrayList<>();
-    private int paddleSpeed;
-    private int paddleWidth;
-    private String levelName;
-    private Sprite background;
-    private List<Block> blocks = new ArrayList<>();
-    private int numberOfBlocksToRemove;
+    private final int numberOfBalls;
+    private final List<Velocity> initialBallVelocities = new ArrayList<>();
+    private final int paddleSpeed;
+    private final int paddleWidth;
+    private final String levelName;
+    private final Sprite background;
+    private final List<Block> blocks = new ArrayList<>();
+    private final int numberOfBlocksToRemove;
 
 
+    /**
+     * Instantiates a new Wide easy info.
+     */
     public WideEasyInfo() {
         this.numberOfBalls = 10;
         for (int i = 0; i < numberOfBalls; i++) {
-            initialBallVelocities.add(Velocity.fromAngleAndSpeed((0+i*30*Math.pow(-1,i))%85 , 7));
+            initialBallVelocities.add(Velocity.fromAngleAndSpeed((0 + i * 30 * Math.pow(-1, i)) % 85, 7));
         }
         this.paddleSpeed = 7;
         this.paddleWidth = 600;
@@ -42,6 +48,11 @@ public class WideEasyInfo implements LevelInformation {
         numberOfBlocksToRemove = blocks.size();
     }
 
+    /**
+     * Create double rainbow list list.
+     *
+     * @return the list
+     */
     public List<Color> createDoubleRainbowList() {
         List<Color> rainbow = new ArrayList<>();
         rainbow.add(new Color(238, 130, 238));

@@ -3,28 +3,32 @@ package game.engine.levels.levelinfo;
 import game.engine.actors.Block;
 import game.engine.actors.Velocity;
 import game.engine.actors.sprites.Sprite;
-import game.engine.levels.backgrounds.Background;
 import game.engine.levels.backgrounds.DirectHitBackground;
-import game.engine.listeners.GiftAdder;
 import game.ui.shapes.Point;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Direct hit info.
+ */
 public class DirectHitInfo implements LevelInformation {
     private static final int GUI_HEIGHT = 600;
     private static final int GUI_WIDTH = 800;
-    private int numberOfBalls;
-    private List<Velocity> initialBallVelocities = new ArrayList<>();
-    private int paddleSpeed;
-    private int paddleWidth;
-    private String levelName;
-    private Sprite background;
-    private List<Block> blocks = new ArrayList<>();
-    private int numberOfBlocksToRemove;
+    private final int numberOfBalls;
+    private final List<Velocity> initialBallVelocities = new ArrayList<>();
+    private final int paddleSpeed;
+    private final int paddleWidth;
+    private final String levelName;
+    private final Sprite background;
+    private final List<Block> blocks = new ArrayList<>();
+    private final int numberOfBlocksToRemove;
 
 
+    /**
+     * Instantiates a new Direct hit info.
+     */
     public DirectHitInfo() {
         this.numberOfBalls = 1;
         for (int i = 0; i < numberOfBalls; i++) {
@@ -32,7 +36,6 @@ public class DirectHitInfo implements LevelInformation {
         }
         this.paddleSpeed = 7;
         this.paddleWidth = 100;
-        //this.levelName = "?̵̢̞̭̙̥̩̫͉̑̓?̩̭̘̱̘̝́̈̉͊́͠?̶̖̗̜̱͔̙̰ͮ́̿͟ͅ?̧͍̺̰̞̖̦̮̼͇ͫ̋̂?̢͇̠̘͇͍̲ͤ͌ͮ̅̎̂ͅͅ";
         this.levelName = "Direct Hit";
         this.background = new DirectHitBackground(new Point(-1, -1),
                 GUI_WIDTH + 5, GUI_HEIGHT + 5, Color.black);

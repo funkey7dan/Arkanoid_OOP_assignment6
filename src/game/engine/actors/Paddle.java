@@ -23,6 +23,7 @@ public class Paddle implements Sprite, Collidable {
     private Rectangle rect;
     private Point middle;
     private Color color;
+    private double paddleWidth;
     private int speed = 7;
     private static int guiHeight;
     private static int guiWidth;
@@ -41,10 +42,16 @@ public class Paddle implements Sprite, Collidable {
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
         this.color = new Color(200, 15, 25);
+        paddleWidth = width;
     }
 
-    public void setBlock(Block block) {
-        this.block = block;
+    /**
+     * Sets block.
+     *
+     * @param block1 the block
+     */
+    public void setBlock(Block block1) {
+        this.block = block1;
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
     }
@@ -59,6 +66,7 @@ public class Paddle implements Sprite, Collidable {
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
         this.color = new Color(200, 15, 25);
+        paddleWidth = block.getCollisionRectangle().getWidth();
 
     }
 
@@ -68,7 +76,7 @@ public class Paddle implements Sprite, Collidable {
      */
     public void moveLeft() {
         this.block = new Block(new Point(rect.getUpperLeft().getX() - speed, rect.getUpperLeft().getY()),
-                rect.getWidth(), rect.getHeight());
+                paddleWidth, rect.getHeight());
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
     }
@@ -79,7 +87,7 @@ public class Paddle implements Sprite, Collidable {
      */
     public void moveRight() {
         this.block = new Block(new Point(rect.getUpperLeft().getX() + speed, rect.getUpperLeft().getY()),
-                rect.getWidth(), rect.getHeight());
+                paddleWidth, rect.getHeight());
         this.rect = block.getCollisionRectangle();
         this.middle = rect.getTopSide().middle();
     }
@@ -98,27 +106,11 @@ public class Paddle implements Sprite, Collidable {
 
     @Override
     public void drawOn(DrawSurface surface) {
-        surface.setColor(Color.BLACK);
-        surface.drawCircle((int) this.rect.getLeftSide().middle().getX(), (int) this.rect.getLeftSide().middle().getY(),
-                (int) this.rect.getLeftSide().length() / 2);
-        surface.drawCircle((int) this.rect.getRightSide().middle().getX(),
-                (int) this.rect.getRightSide().middle().getY(),
-                ((int) this.rect.getRightSide().length() / 2));
-        surface.setColor(Color.white);
-        surface.fillCircle((int) this.rect.getLeftSide().middle().getX(), (int) this.rect.getLeftSide().middle().getY(),
-                (int) this.rect.getLeftSide().length() / 2);
-        surface.fillCircle((int) this.rect.getRightSide().middle().getX(),
-                (int) this.rect.getRightSide().middle().getY(),
-                (int) this.rect.getRightSide().length() / 2);
+
         this.block.setColor(this.color);
 
 
-
-
-        //surface.setColor(this.color);
         this.block.drawOn(surface);
-//        surface.drawText((int) rect.getUpperLeft().getX() + 25, (int) rect.getUpperLeft().getY() + 15,
-//                "Player 1", FONT_SIZE);
     }
 
     @Override
@@ -174,6 +166,11 @@ public class Paddle implements Sprite, Collidable {
         this.keyboard = keyboard1;
     }
 
+    /**
+     * Gets middle.
+     *
+     * @return the middle
+     */
     public Point getMiddle() {
         return middle;
     }
@@ -186,17 +183,47 @@ public class Paddle implements Sprite, Collidable {
     }
 
     /**
-     * @param speed the speed we will assign.
+     * @param speed1 the speed we will assign.
      */
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setSpeed(int speed1) {
+        this.speed = speed1;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    /**
+     * Sets color.
+     *
+     * @param color1 the color
+     */
+    public void setColor(Color color1) {
+        this.color = color1;
     }
 
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
     public Color getColor() {
         return this.color;
+    }
+
+    /**
+     * Sets paddle width.
+     *
+     * @param width the width
+     */
+    public void setPaddleWidth(double width) {
+        this.paddleWidth = width;
+        this.rect.setWidth(width);
+        this.block = new Block(rect);
+    }
+
+    /**
+     * Gets paddle width.
+     *
+     * @return the paddle width
+     */
+    public double getPaddleWidth() {
+        return this.paddleWidth;
     }
 }

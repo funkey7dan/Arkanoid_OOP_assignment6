@@ -1,15 +1,25 @@
 package game.engine.animation;
 
 import biuoop.DrawSurface;
-import biuoop.KeyboardSensor;
 import game.engine.accessories.Counter;
 
 import java.awt.Color;
 
+/**
+ * The type Lose screen.
+ */
 public class LoseScreen implements Animation {
-    Counter totalScore;
-    private boolean stop;
+    /**
+     * The Total score.
+     */
+    private final Counter totalScore;
+    private final boolean stop;
 
+    /**
+     * Instantiates a new Lose screen.
+     *
+     * @param totalScore the total score
+     */
     public LoseScreen(Counter totalScore) {
         this.totalScore = totalScore;
         this.stop = false;
@@ -21,10 +31,7 @@ public class LoseScreen implements Animation {
         d.fillRectangle(0, 0, 800, 600);
         d.setColor(new Color(0, 0, 170));
         d.drawText(230, 150, "Game Over", 65);
-        d.drawText(280, 165 + 30, "Your score is:" + String.valueOf(totalScore.getValue()), 32);
-//        if (this.keyboard.isPressed(KeyboardSensor.SPACE_KEY)) {
-//            this.stop = true;
-//        }
+        d.drawText(280, 165 + 30, "Your score is:" + (totalScore.getValue()), 32);
     }
 
     /**

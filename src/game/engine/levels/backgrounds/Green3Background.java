@@ -6,6 +6,9 @@ import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
+/**
+ * The type Green 3 background.
+ */
 public class Green3Background extends Background {
     /**
      * Constructor for game.engine.actors.Block.
@@ -61,19 +64,6 @@ public class Green3Background extends Background {
                 d.fillRectangle(68 + (j * 20), 380 + (i * 35), 15, 20);
             }
         }
-
-//        d.setColor(new Color(250, 250, 150));
-//        d.fillCircle(200, 140, 50);
-//        d.setColor(new Color(235, 200, 100));
-//        d.fillCircle(200, 140, 40);
-//        d.setColor(new Color(250, 250, 0));
-//        d.fillCircle(200, 140, 30);
-//        for (int i = 0; i < 800; i+=10) {
-//            d.drawLine(200, 140, i, 250);
-//        }
-//        d.setColor(new Color(250, 250, 250));
-//        d.fillCircle(200, 140, 5);
-
 
     }
 }

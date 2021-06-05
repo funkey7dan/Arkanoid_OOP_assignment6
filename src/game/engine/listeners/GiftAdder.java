@@ -11,8 +11,8 @@ import game.engine.levels.GameLevel;
  * of the number of blocks that remain.
  */
 public class GiftAdder implements HitListener {
-    private GameLevel gameLevel;
-    private Counter remainingBalls;
+    private final GameLevel gameLevel;
+    private final Counter remainingBalls;
 
     /**
      * Constructor for the ball adder class.

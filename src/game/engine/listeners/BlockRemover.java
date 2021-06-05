@@ -12,8 +12,8 @@ import game.engine.levels.GameLevel;
  * of the number of blocks that remain.
  */
 public class BlockRemover implements HitListener {
-    private GameLevel gameLevel;
-    private Counter remainingBlocks;
+    private final GameLevel gameLevel;
+    private final Counter remainingBlocks;
 
     /**
      * Constructor.

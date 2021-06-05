@@ -7,14 +7,24 @@ import game.engine.actors.sprites.Sprite;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.File;
+import java.util.Objects;
 
+/**
+ * The type Backdrop.
+ */
+@Deprecated
 public class Backdrop implements Sprite {
     private Image image;
     private File file;
 
+    /**
+     * Instantiates a new Backdrop.
+     *
+     * @param file the file
+     */
     public Backdrop(File file) {
         try {
-            this.image = ImageIO.read(getClass().getResource("/Background.jpg"));
+            this.image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/Background.jpg")));
         } catch (Exception e) {
             e.printStackTrace();
         }

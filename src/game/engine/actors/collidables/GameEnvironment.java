@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Daniel Bronfman
  * @Email: <daniel.bronfman2010@gmail.com>
- * A class for the object Game.Engine.Actors.Collidables.GameEnvironment.
+ * A class for the object GameEnvironment.
  * Has an array of all the collidable objects in the game.
  * Supporting adding new collidable objects, and queries about existing.
  */
@@ -44,7 +44,7 @@ public class GameEnvironment {
      * about the closest collision that is going to occur.
      *
      * @param trajectory line of movement of the object
-     * @return the Game.Engine.Actors.Collidables.CollisionInfo about the closest obstacle to the object
+     * @return the CollisionInfo about the closest obstacle to the object
      */
     public CollisionInfo getClosestCollision(Line trajectory) {
         Collidable closestObject;
@@ -78,6 +78,9 @@ public class GameEnvironment {
         return collidableList;
     }
 
+    /**
+     * Clear.
+     */
     public void clear() {
         collidableList.clear();
     }

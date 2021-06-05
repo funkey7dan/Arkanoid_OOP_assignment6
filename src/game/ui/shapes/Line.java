@@ -14,7 +14,7 @@ import java.util.List;
 public class Line {
     private final Point start;
     private final Point end;
-    private double length;
+    private final double length;
 
     // constructors
 

@@ -9,9 +9,9 @@ import biuoop.Sleeper;
  * and projecting it to the user.
  */
 public class AnimationRunner {
-    private GUI gui;
+    private final GUI gui;
     private int framesPerSecond;
-    private Sleeper sleeper;
+    private final Sleeper sleeper;
 
 
     /**
@@ -49,10 +49,16 @@ public class AnimationRunner {
         }
     }
 
+    /**
+     * @param fps the frames per second we want to set.
+     */
     public void setFramesPerSecond(int fps) {
         this.framesPerSecond = fps;
     }
 
+    /**
+     * @return current frames per second.
+     */
     public int getFramesPerSecond() {
         return framesPerSecond;
     }

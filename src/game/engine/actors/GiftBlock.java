@@ -20,7 +20,8 @@ public class GiftBlock extends Block {
      * @param height    - the height of the block
      */
     public GiftBlock(Point upperLeft, double width, double height) {
-        super(upperLeft, width, height);super.setGiftIcon();
+        super(upperLeft, width, height);
+        super.setGiftIcon();
         super.setTexture();
     }
 
@@ -35,6 +36,11 @@ public class GiftBlock extends Block {
         super.setTexture();
     }
 
+    /**
+     * Instantiates a new Gift block.
+     *
+     * @param block the block
+     */
     public GiftBlock(Block block) {
         super(block);
         super.setGiftIcon();

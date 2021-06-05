@@ -12,15 +12,15 @@ import game.ui.shapes.Point;
 public class Velocity {
 
     // the horizontal component of the velocity
-    private final double dx;
+    private double dx;
 
     // the vertical component of the velocity
-    private final double dy;
+    private double dy;
 
     // the difference in the position we want to set
     private static final double DELTA = 3;
 
-    private static double speed;
+    private double speed;
 
     /**
      * Constructor for game.engine.actors.Velocity.
@@ -35,6 +35,20 @@ public class Velocity {
     }
 
     /**
+     * Constructor for Velocity.
+     *
+     * @param dx    - the horizontal component of the velocity
+     * @param dy    - the vertical component of the velocity
+     * @param speed1 - the speed.
+     */
+    public Velocity(double dx, double dy, double speed1) {
+        this.dx = dx;
+        this.dy = dy;
+        this.speed = speed1;
+
+    }
+
+    /**
      * Converts angle and speed to vertical and horizontal deltas.
      * We using trigonometric functions to separate the given speed into it's components.
      *
@@ -44,7 +58,6 @@ public class Velocity {
      */
     public static Velocity fromAngleAndSpeed(double angle, double speed) {
 
-        setSpeed(speed);
         //convert the angle to Radians
         angle = Math.toRadians(angle);
 
@@ -54,14 +67,28 @@ public class Velocity {
 
         // cos(x) = Adjacent / hypotenuse
         double dy = -(Math.cos(angle) * speed);
-        return new Velocity(Math.round(dx), Math.round(dy));
+        return new Velocity(Math.round(dx), Math.round(dy), speed);
     }
 
-    public static void setSpeed(double speed) {
-        Velocity.speed = speed;
+    /**
+     * Sets speed.
+     *
+     * @param speed1 the speed
+     */
+    public void setSpeed(double speed1) {
+        double angle = Math.toDegrees(Math.asin(this.dx / 3));
+        this.speed = speed1;
+        this.dx = Math.sin(angle) * speed;
+        this.dy = (Math.cos(angle) * speed);
     }
 
-    public static double getSpeed() {
+
+    /**
+     * Gets speed.
+     *
+     * @return the speed
+     */
+    public double getSpeed() {
         return speed;
     }
 

@@ -14,8 +14,10 @@ import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Daniel Bronfman
@@ -52,11 +54,18 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     public Block(Rectangle rec) {
         this.rect = rec;
+        setTexture();
     }
 
+    /**
+     * Constructor for creating a block from a block.
+     *
+     * @param block the block we copy from.
+     */
     public Block(Block block) {
         this.rect = block.rect;
         this.color = block.color;
+        setTexture();
     }
 
 
@@ -156,15 +165,20 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     public void setTexture() {
         try {
-            this.texture = ImageIO.read(getClass().getResource("/Shine2.png"));
-            this.texture = texture.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
-                    Image.SCALE_DEFAULT);
-            texture.setAccelerationPriority(1);
+            this.texture = ImageIO.read(Objects.requireNonNull(getClass().getResource("/Shine2.png")));
+
         } catch (
                 Exception e) {
-            e.printStackTrace();
+            try {
+                this.texture = ImageIO.read(new File("textures/Shine2.png"));
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                e.printStackTrace();
+            }
         }
-
+        this.texture = texture.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
+                Image.SCALE_DEFAULT);
+        texture.setAccelerationPriority(1);
     }
 
     /**
@@ -173,7 +187,12 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     public void setSkullIcon() {
         try {
-            this.icon = ImageIO.read(getClass().getResource("/Skull.png"));
+            this.icon = ImageIO.read(Objects.requireNonNull(getClass().getResource("/Skull.png")));
+            try {
+                this.icon = ImageIO.read(new File("textures/Skull.png"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.icon = icon.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
                     Image.SCALE_DEFAULT);
             icon.setAccelerationPriority((float) 0.1);
@@ -189,13 +208,21 @@ public class Block implements Collidable, Sprite, HitNotifier {
      */
     public void setGiftIcon() {
         try {
-            this.icon = ImageIO.read(getClass().getResource("/Gift.png"));
-            this.icon = icon.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
-                    Image.SCALE_DEFAULT);
-            icon.setAccelerationPriority((float) 0.1);
+            this.icon = ImageIO.read(Objects.requireNonNull(getClass().getResource("/Gift.png")));
+
+
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                this.icon = ImageIO.read(new File("textures/Gift.png"));
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                e.printStackTrace();
+            }
+
         }
+        this.icon = icon.getScaledInstance((int) this.rect.getWidth(), (int) this.rect.getHeight(),
+                Image.SCALE_DEFAULT);
+        icon.setAccelerationPriority((float) 0.1);
     }
 
     @Override
@@ -231,9 +258,15 @@ public class Block implements Collidable, Sprite, HitNotifier {
         }
     }
 
+    /**
+     * Creates a new "Gift" object, in the bottom middle of the block, falling down.
+     *
+     * @return a reference to the spawned gift.
+     */
     public Gift spawnGift() {
         double centerX = this.getCollisionRectangle().getBottomSide().middle().getX() - this.rect.getWidth() / 2;
         double centerY = this.getCollisionRectangle().getBottomSide().middle().getY();
-        return new Gift(new Point(centerX, centerY), 15, Color.MAGENTA);
+        return new Gift(new Point(centerX, centerY), 15);
     }
+
 }

@@ -15,14 +15,14 @@ public class Rectangle {
 
     // Corner points
     private final Point upperLeft;
-    private final Point upperRight;
-    private final Point lowerLeft;
-    private final Point lowerRight;
-    private final Line rightSide;
-    private final Line leftSide;
-    private final Line topSide;
-    private final Line bottomSide;
-    private final double width;
+    private Point upperRight;
+    private Point lowerLeft;
+    private Point lowerRight;
+    private Line rightSide;
+    private Line leftSide;
+    private Line topSide;
+    private Line bottomSide;
+    private double width;
     private final double height;
 
 
@@ -148,13 +148,26 @@ public class Rectangle {
      * @return true or false
      */
     public Boolean isInside(Point check) {
-        if ((check.getX() > this.lowerLeft.getX())
+        return (check.getX() > this.lowerLeft.getX())
                 && (check.getX() < this.lowerRight.getX())
                 && (check.getY() > this.upperRight.getY())
-                && (check.getY() < this.lowerRight.getY())) {
-            return true;
-        }
-        return false;
+                && (check.getY() < this.lowerRight.getY());
+    }
+
+    /**
+     * Sets width.
+     *
+     * @param width1 the width
+     */
+    public void setWidth(double width1) {
+        this.width = width1;
+        this.upperRight = new Point(upperLeft.getX() + width, upperLeft.getY());
+        this.lowerLeft = new Point(upperLeft.getX(), upperLeft.getY() + height);
+        this.lowerRight = new Point(upperRight.getX(), lowerLeft.getY());
+        this.rightSide = new Line(upperRight, lowerRight);
+        this.leftSide = new Line(upperLeft, lowerLeft);
+        this.topSide = new Line(upperLeft, upperRight);
+        this.bottomSide = new Line(lowerLeft, lowerRight);
     }
 
 

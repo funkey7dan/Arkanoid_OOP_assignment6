@@ -6,15 +6,42 @@ import game.engine.levels.GameLevel;
 
 import java.awt.Color;
 
+/**
+ * The type Eye.
+ */
 public class Eye implements Sprite {
-    Point middle;
-    Point irisPoint;
-    int radius;
-    GameLevel game;
+    /**
+     * The Middle.
+     */
+    private final Point middle;
+    /**
+     * The Iris point.
+     */
+    private Point irisPoint;
+    /**
+     * The Radius.
+     */
+    private final int radius;
+
+    /**
+     * The Game.
+     */
+    private GameLevel game;
     private final double eyeballDistance;
-    Color color;
+
+    /**
+     * The Color.
+     */
+    private final Color color;
 
 
+    /**
+     * Instantiates a new Eye.
+     *
+     * @param iris   the iris
+     * @param radius the radius
+     * @param color  the color
+     */
     public Eye(Point iris, int radius, Color color) {
         this.middle = iris;
         this.irisPoint = iris;
@@ -23,7 +50,9 @@ public class Eye implements Sprite {
         this.color = color;
     }
 
-    static double i = 0.4;
+    // a static variable to track the change in the size of the pupil.
+    // limits the dilation.
+    private static double i = 0.4;
 
     /**
      * Method for drawing the object on a given surface.
@@ -38,14 +67,10 @@ public class Eye implements Sprite {
         //draw outline
         d.setColor(Color.black);
         //draw the white of the eye
-        d.setColor(new Color(255,255,235));
+        d.setColor(new Color(255, 255, 235));
         d.fillCircle((int) middle.getX(), (int) middle.getY(), radius);
         //draw eyeball
         d.fillCircle((int) middle.getX(), (int) middle.getY(), radius + 1);
-//        d.setColor(new Color(200, 41, 27));
-//        d.setColor(new Color(250, 121, 0));
-//        d.setColor(new Color(41, 200, 27));
-//        d.setColor(new Color(27, 150, 195));
         d.setColor(this.color);
         d.fillCircle((int) irisPoint.getX(), (int) irisPoint.getY(), (int) (radius * 0.4));
         d.setColor(this.color.darker());
@@ -65,6 +90,11 @@ public class Eye implements Sprite {
         trackPoint(game.getP1().getMiddle());
     }
 
+    /**
+     * Track point.
+     *
+     * @param p the p
+     */
     public void trackPoint(Point p) {
         Point origin = this.irisPoint;
         double theta = Math.atan2((p.getY() - origin.getY()),

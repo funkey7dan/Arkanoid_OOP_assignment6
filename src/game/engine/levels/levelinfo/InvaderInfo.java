@@ -13,27 +13,34 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Invader info.
+ */
 public class InvaderInfo implements LevelInformation {
     private static final int GUI_HEIGHT = 600;
     private static final int GUI_WIDTH = 800;
-    private int numberOfBalls;
-    private List<Velocity> initialBallVelocities = new ArrayList<>();
-    private int paddleSpeed;
-    private int paddleWidth;
-    private String levelName;
-    private Sprite background;
-    private List<Block> blocks = new ArrayList<>();
-    private int numberOfBlocksToRemove;
+    private final int numberOfBalls;
+    private final List<Velocity> initialBallVelocities = new ArrayList<>();
+    private final int paddleSpeed;
+    private final int paddleWidth;
+    private final String levelName;
+    private final Sprite background;
+    private final List<Block> blocks;
+    private final int numberOfBlocksToRemove;
     private static final int BLOCK_WIDTH = 15;
     private static final int BLOCK_HEIGHT = 15;
 
 
+    /**
+     * Instantiates a new Invader info.
+     */
     public InvaderInfo() {
         this.numberOfBalls = 2;
         for (int i = 0; i < numberOfBalls; i++) {
-            initialBallVelocities.add(Velocity.fromAngleAndSpeed(180 + 220 * (Math.pow(-1, i)), 3));
+            initialBallVelocities.add(Velocity.fromAngleAndSpeed(180 + 120 * (Math.pow(-1, i)), 3));
         }
         this.paddleSpeed = 3;
         this.paddleWidth = 100;
@@ -41,14 +48,17 @@ public class InvaderInfo implements LevelInformation {
         this.background = new InvaderBackground(new Point(-1, -1),
                 GUI_WIDTH + 5, GUI_HEIGHT + 5, Color.black);
         // create blocks from text file
-        generateBlocks();
-        //blocks = CreateInvaderBlocks.create();
+        //generateBlocks();
+        blocks = CreateInvaderBlocks.create();
         for (Block b : blocks) {
             b.setColor(Color.GREEN);
         }
         numberOfBlocksToRemove = blocks.size();
     }
 
+    /**
+     * Generate blocks.
+     */
     public void generateBlocks() {
 
         int y = 0;
@@ -57,7 +67,8 @@ public class InvaderInfo implements LevelInformation {
 
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream is = classLoader.getResourceAsStream("spaceinvader.txt");
-            List<String> allLines = new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.toList());
+            List<String> allLines = new BufferedReader(
+                    new InputStreamReader(Objects.requireNonNull(is))).lines().collect(Collectors.toList());
             //List<String> allLines = Files.readAllLines(Paths.get("src/game/engine/accessories/eldritch.txt"));
 
 
@@ -70,7 +81,8 @@ public class InvaderInfo implements LevelInformation {
                         Block block = new Block(new Point(x, y), BLOCK_WIDTH, BLOCK_HEIGHT);
                         block.setColor(Color.GREEN);
                         blocks.add(block);
-//                        System.out.println("Block block = new Block(new Point(" + x + "," + y + "), " + BLOCK_WIDTH + ", " +
+//                        System.out.println("Block block =
+//                        new Block(new Point(" + x + "," + y + "), " + BLOCK_WIDTH + ", " +
 //                                "" + BLOCK_HEIGHT + ");");
                     }
                     x += BLOCK_WIDTH;

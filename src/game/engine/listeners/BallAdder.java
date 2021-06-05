@@ -10,8 +10,7 @@ import game.engine.levels.GameLevel;
  * of the number of blocks that remain.
  */
 public class BallAdder implements HitListener {
-    private GameLevel gameLevel;
-    private Counter remainingBalls;
+    private final Counter remainingBalls;
 
     /**
      * Constructor for the ball adder class.
@@ -20,7 +19,6 @@ public class BallAdder implements HitListener {
      * @param remainingBalls - the number of remaining balls in the game.
      */
     public BallAdder(GameLevel gameLevel, Counter remainingBalls) {
-        this.gameLevel = gameLevel;
         this.remainingBalls = remainingBalls;
     }
 

@@ -1,3 +1,4 @@
+//XXXXXXXXX
 package game.engine.levels.backgrounds;
 
 import biuoop.DrawSurface;
@@ -6,6 +7,9 @@ import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
+/**
+ * The type Wide easy background.
+ */
 public class WideEasyBackground extends Background {
     /**
      * Constructor for game.engine.actors.Block.
@@ -50,7 +54,7 @@ public class WideEasyBackground extends Background {
         d.fillCircle(200, 140, 40);
         d.setColor(new Color(250, 250, 0));
         d.fillCircle(200, 140, 30);
-        for (int i = 0; i < 800; i+=10) {
+        for (int i = 0; i < 800; i += 10) {
             d.drawLine(200, 140, i, 250);
         }
         d.setColor(new Color(250, 250, 250));

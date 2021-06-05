@@ -6,8 +6,17 @@ import game.ui.shapes.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Create invader blocks.
+ */
 public class CreateInvaderBlocks {
-    static public List<Block> create() {
+
+    /**
+     * Create list.
+     *
+     * @return the list
+     */
+    public static List<Block> create() {
         List<Block> blocks = new ArrayList<>();
         blocks.add(new Block(new Point(255, 45), 15, 15));
         blocks.add(new Block(new Point(270, 45), 15, 15));
@@ -91,136 +100,6 @@ public class CreateInvaderBlocks {
         blocks.add(new Block(new Point(420, 150), 15, 15));
         blocks.add(new Block(new Point(435, 150), 15, 15));
         blocks.add(new Block(new Point(450, 150), 15, 15));
-        blocks.add(new Block(new Point(465, 150), 15, 15));
-        blocks.add(new Block(new Point(480, 150), 15, 15));
-        blocks.add(new Block(new Point(495, 150), 15, 15));
-        blocks.add(new Block(new Point(510, 150), 15, 15));
-        blocks.add(new Block(new Point(525, 150), 15, 15));
-        blocks.add(new Block(new Point(540, 150), 15, 15));
-        blocks.add(new Block(new Point(210, 165), 15, 15));
-        blocks.add(new Block(new Point(225, 165), 15, 15));
-        blocks.add(new Block(new Point(240, 165), 15, 15));
-        blocks.add(new Block(new Point(255, 165), 15, 15));
-        blocks.add(new Block(new Point(270, 165), 15, 15));
-        blocks.add(new Block(new Point(285, 165), 15, 15));
-        blocks.add(new Block(new Point(345, 165), 15, 15));
-        blocks.add(new Block(new Point(360, 165), 15, 15));
-        blocks.add(new Block(new Point(375, 165), 15, 15));
-        blocks.add(new Block(new Point(390, 165), 15, 15));
-        blocks.add(new Block(new Point(405, 165), 15, 15));
-        blocks.add(new Block(new Point(420, 165), 15, 15));
-        blocks.add(new Block(new Point(435, 165), 15, 15));
-        blocks.add(new Block(new Point(450, 165), 15, 15));
-        blocks.add(new Block(new Point(510, 165), 15, 15));
-        blocks.add(new Block(new Point(525, 165), 15, 15));
-        blocks.add(new Block(new Point(540, 165), 15, 15));
-        blocks.add(new Block(new Point(555, 165), 15, 15));
-        blocks.add(new Block(new Point(570, 165), 15, 15));
-        blocks.add(new Block(new Point(585, 165), 15, 15));
-        blocks.add(new Block(new Point(210, 180), 15, 15));
-        blocks.add(new Block(new Point(225, 180), 15, 15));
-        blocks.add(new Block(new Point(240, 180), 15, 15));
-        blocks.add(new Block(new Point(255, 180), 15, 15));
-        blocks.add(new Block(new Point(270, 180), 15, 15));
-        blocks.add(new Block(new Point(285, 180), 15, 15));
-        blocks.add(new Block(new Point(345, 180), 15, 15));
-        blocks.add(new Block(new Point(360, 180), 15, 15));
-        blocks.add(new Block(new Point(375, 180), 15, 15));
-        blocks.add(new Block(new Point(390, 180), 15, 15));
-        blocks.add(new Block(new Point(405, 180), 15, 15));
-        blocks.add(new Block(new Point(420, 180), 15, 15));
-        blocks.add(new Block(new Point(435, 180), 15, 15));
-        blocks.add(new Block(new Point(450, 180), 15, 15));
-        blocks.add(new Block(new Point(510, 180), 15, 15));
-        blocks.add(new Block(new Point(525, 180), 15, 15));
-        blocks.add(new Block(new Point(540, 180), 15, 15));
-        blocks.add(new Block(new Point(555, 180), 15, 15));
-        blocks.add(new Block(new Point(570, 180), 15, 15));
-        blocks.add(new Block(new Point(585, 180), 15, 15));
-        blocks.add(new Block(new Point(210, 195), 15, 15));
-        blocks.add(new Block(new Point(225, 195), 15, 15));
-        blocks.add(new Block(new Point(240, 195), 15, 15));
-        blocks.add(new Block(new Point(255, 195), 15, 15));
-        blocks.add(new Block(new Point(270, 195), 15, 15));
-        blocks.add(new Block(new Point(285, 195), 15, 15));
-        blocks.add(new Block(new Point(345, 195), 15, 15));
-        blocks.add(new Block(new Point(360, 195), 15, 15));
-        blocks.add(new Block(new Point(375, 195), 15, 15));
-        blocks.add(new Block(new Point(390, 195), 15, 15));
-        blocks.add(new Block(new Point(405, 195), 15, 15));
-        blocks.add(new Block(new Point(420, 195), 15, 15));
-        blocks.add(new Block(new Point(435, 195), 15, 15));
-        blocks.add(new Block(new Point(450, 195), 15, 15));
-        blocks.add(new Block(new Point(510, 195), 15, 15));
-        blocks.add(new Block(new Point(525, 195), 15, 15));
-        blocks.add(new Block(new Point(540, 195), 15, 15));
-        blocks.add(new Block(new Point(555, 195), 15, 15));
-        blocks.add(new Block(new Point(570, 195), 15, 15));
-        blocks.add(new Block(new Point(585, 195), 15, 15));
-        blocks.add(new Block(new Point(165, 210), 15, 15));
-        blocks.add(new Block(new Point(180, 210), 15, 15));
-        blocks.add(new Block(new Point(195, 210), 15, 15));
-        blocks.add(new Block(new Point(210, 210), 15, 15));
-        blocks.add(new Block(new Point(225, 210), 15, 15));
-        blocks.add(new Block(new Point(240, 210), 15, 15));
-        blocks.add(new Block(new Point(255, 210), 15, 15));
-        blocks.add(new Block(new Point(270, 210), 15, 15));
-        blocks.add(new Block(new Point(285, 210), 15, 15));
-        blocks.add(new Block(new Point(300, 210), 15, 15));
-        blocks.add(new Block(new Point(315, 210), 15, 15));
-        blocks.add(new Block(new Point(330, 210), 15, 15));
-        blocks.add(new Block(new Point(345, 210), 15, 15));
-        blocks.add(new Block(new Point(360, 210), 15, 15));
-        blocks.add(new Block(new Point(375, 210), 15, 15));
-        blocks.add(new Block(new Point(390, 210), 15, 15));
-        blocks.add(new Block(new Point(405, 210), 15, 15));
-        blocks.add(new Block(new Point(420, 210), 15, 15));
-        blocks.add(new Block(new Point(435, 210), 15, 15));
-        blocks.add(new Block(new Point(450, 210), 15, 15));
-        blocks.add(new Block(new Point(465, 210), 15, 15));
-        blocks.add(new Block(new Point(480, 210), 15, 15));
-        blocks.add(new Block(new Point(495, 210), 15, 15));
-        blocks.add(new Block(new Point(510, 210), 15, 15));
-        blocks.add(new Block(new Point(525, 210), 15, 15));
-        blocks.add(new Block(new Point(540, 210), 15, 15));
-        blocks.add(new Block(new Point(555, 210), 15, 15));
-        blocks.add(new Block(new Point(570, 210), 15, 15));
-        blocks.add(new Block(new Point(585, 210), 15, 15));
-        blocks.add(new Block(new Point(600, 210), 15, 15));
-        blocks.add(new Block(new Point(615, 210), 15, 15));
-        blocks.add(new Block(new Point(630, 210), 15, 15));
-        blocks.add(new Block(new Point(165, 225), 15, 15));
-        blocks.add(new Block(new Point(180, 225), 15, 15));
-        blocks.add(new Block(new Point(195, 225), 15, 15));
-        blocks.add(new Block(new Point(210, 225), 15, 15));
-        blocks.add(new Block(new Point(225, 225), 15, 15));
-        blocks.add(new Block(new Point(240, 225), 15, 15));
-        blocks.add(new Block(new Point(255, 225), 15, 15));
-        blocks.add(new Block(new Point(270, 225), 15, 15));
-        blocks.add(new Block(new Point(285, 225), 15, 15));
-        blocks.add(new Block(new Point(300, 225), 15, 15));
-        blocks.add(new Block(new Point(315, 225), 15, 15));
-        blocks.add(new Block(new Point(330, 225), 15, 15));
-        blocks.add(new Block(new Point(345, 225), 15, 15));
-        blocks.add(new Block(new Point(360, 225), 15, 15));
-        blocks.add(new Block(new Point(375, 225), 15, 15));
-        blocks.add(new Block(new Point(390, 225), 15, 15));
-        blocks.add(new Block(new Point(405, 225), 15, 15));
-        blocks.add(new Block(new Point(420, 225), 15, 15));
-        blocks.add(new Block(new Point(435, 225), 15, 15));
-        blocks.add(new Block(new Point(450, 225), 15, 15));
-        blocks.add(new Block(new Point(465, 225), 15, 15));
-        blocks.add(new Block(new Point(480, 225), 15, 15));
-        blocks.add(new Block(new Point(495, 225), 15, 15));
-        blocks.add(new Block(new Point(510, 225), 15, 15));
-        blocks.add(new Block(new Point(525, 225), 15, 15));
-        blocks.add(new Block(new Point(540, 225), 15, 15));
-        blocks.add(new Block(new Point(555, 225), 15, 15));
-        blocks.add(new Block(new Point(570, 225), 15, 15));
-        blocks.add(new Block(new Point(585, 225), 15, 15));
-        blocks.add(new Block(new Point(600, 225), 15, 15));
-        blocks.add(new Block(new Point(615, 225), 15, 15));
-        blocks.add(new Block(new Point(630, 225), 15, 15));
         blocks.add(new Block(new Point(165, 240), 15, 15));
         blocks.add(new Block(new Point(180, 240), 15, 15));
         blocks.add(new Block(new Point(195, 240), 15, 15));
@@ -252,6 +131,18 @@ public class CreateInvaderBlocks {
         blocks.add(new Block(new Point(585, 240), 15, 15));
         blocks.add(new Block(new Point(600, 240), 15, 15));
         blocks.add(new Block(new Point(615, 240), 15, 15));
+        blocks.addAll(createPt2());
+        blocks.addAll(createPt1());
+        return blocks;
+    }
+
+    /**
+     * Create list.
+     *
+     * @return the list
+     */
+    public static List<Block> createPt1() {
+        List<Block> blocks = new ArrayList<>();
         blocks.add(new Block(new Point(630, 240), 15, 15));
         blocks.add(new Block(new Point(165, 255), 15, 15));
         blocks.add(new Block(new Point(180, 255), 15, 15));
@@ -397,6 +288,147 @@ public class CreateInvaderBlocks {
         blocks.add(new Block(new Point(465, 360), 15, 15));
         blocks.add(new Block(new Point(480, 360), 15, 15));
         blocks.add(new Block(new Point(495, 360), 15, 15));
+        return blocks;
+    }
+
+    /**
+     * Create list.
+     *
+     * @return the list
+     */
+    public static List<Block> createPt2() {
+        List<Block> blocks = new ArrayList<>();
+        blocks.add(new Block(new Point(465, 150), 15, 15));
+        blocks.add(new Block(new Point(480, 150), 15, 15));
+        blocks.add(new Block(new Point(495, 150), 15, 15));
+        blocks.add(new Block(new Point(510, 150), 15, 15));
+        blocks.add(new Block(new Point(525, 150), 15, 15));
+        blocks.add(new Block(new Point(540, 150), 15, 15));
+        blocks.add(new Block(new Point(210, 165), 15, 15));
+        blocks.add(new Block(new Point(225, 165), 15, 15));
+        blocks.add(new Block(new Point(240, 165), 15, 15));
+        blocks.add(new Block(new Point(255, 165), 15, 15));
+        blocks.add(new Block(new Point(270, 165), 15, 15));
+        blocks.add(new Block(new Point(285, 165), 15, 15));
+        blocks.add(new Block(new Point(345, 165), 15, 15));
+        blocks.add(new Block(new Point(360, 165), 15, 15));
+        blocks.add(new Block(new Point(375, 165), 15, 15));
+        blocks.add(new Block(new Point(390, 165), 15, 15));
+        blocks.add(new Block(new Point(405, 165), 15, 15));
+        blocks.add(new Block(new Point(420, 165), 15, 15));
+        blocks.add(new Block(new Point(435, 165), 15, 15));
+        blocks.add(new Block(new Point(450, 165), 15, 15));
+        blocks.add(new Block(new Point(510, 165), 15, 15));
+        blocks.add(new Block(new Point(525, 165), 15, 15));
+        blocks.add(new Block(new Point(540, 165), 15, 15));
+        blocks.add(new Block(new Point(555, 165), 15, 15));
+        blocks.add(new Block(new Point(570, 165), 15, 15));
+        blocks.add(new Block(new Point(585, 165), 15, 15));
+        blocks.add(new Block(new Point(210, 180), 15, 15));
+        blocks.add(new Block(new Point(225, 180), 15, 15));
+        blocks.add(new Block(new Point(240, 180), 15, 15));
+        blocks.add(new Block(new Point(255, 180), 15, 15));
+        blocks.add(new Block(new Point(270, 180), 15, 15));
+        blocks.add(new Block(new Point(285, 180), 15, 15));
+        blocks.add(new Block(new Point(345, 180), 15, 15));
+        blocks.add(new Block(new Point(360, 180), 15, 15));
+        blocks.add(new Block(new Point(375, 180), 15, 15));
+        blocks.add(new Block(new Point(390, 180), 15, 15));
+        blocks.add(new Block(new Point(405, 180), 15, 15));
+        blocks.add(new Block(new Point(420, 180), 15, 15));
+        blocks.add(new Block(new Point(435, 180), 15, 15));
+        blocks.add(new Block(new Point(450, 180), 15, 15));
+        blocks.add(new Block(new Point(510, 180), 15, 15));
+        blocks.add(new Block(new Point(525, 180), 15, 15));
+        blocks.add(new Block(new Point(540, 180), 15, 15));
+        blocks.add(new Block(new Point(555, 180), 15, 15));
+        blocks.add(new Block(new Point(570, 180), 15, 15));
+        blocks.add(new Block(new Point(585, 180), 15, 15));
+        blocks.add(new Block(new Point(210, 195), 15, 15));
+        blocks.add(new Block(new Point(225, 195), 15, 15));
+        blocks.add(new Block(new Point(240, 195), 15, 15));
+        blocks.add(new Block(new Point(255, 195), 15, 15));
+        blocks.add(new Block(new Point(270, 195), 15, 15));
+        blocks.add(new Block(new Point(285, 195), 15, 15));
+        blocks.add(new Block(new Point(345, 195), 15, 15));
+        blocks.add(new Block(new Point(360, 195), 15, 15));
+        blocks.add(new Block(new Point(375, 195), 15, 15));
+        blocks.add(new Block(new Point(390, 195), 15, 15));
+        blocks.add(new Block(new Point(405, 195), 15, 15));
+        blocks.add(new Block(new Point(420, 195), 15, 15));
+        blocks.add(new Block(new Point(435, 195), 15, 15));
+        blocks.add(new Block(new Point(450, 195), 15, 15));
+        blocks.add(new Block(new Point(510, 195), 15, 15));
+        blocks.add(new Block(new Point(525, 195), 15, 15));
+        blocks.add(new Block(new Point(540, 195), 15, 15));
+        blocks.add(new Block(new Point(555, 195), 15, 15));
+        blocks.add(new Block(new Point(570, 195), 15, 15));
+        blocks.add(new Block(new Point(585, 195), 15, 15));
+        blocks.add(new Block(new Point(165, 210), 15, 15));
+        blocks.add(new Block(new Point(180, 210), 15, 15));
+        blocks.add(new Block(new Point(195, 210), 15, 15));
+        blocks.add(new Block(new Point(210, 210), 15, 15));
+        blocks.add(new Block(new Point(225, 210), 15, 15));
+        blocks.add(new Block(new Point(240, 210), 15, 15));
+        blocks.add(new Block(new Point(255, 210), 15, 15));
+        blocks.add(new Block(new Point(270, 210), 15, 15));
+        blocks.add(new Block(new Point(285, 210), 15, 15));
+        blocks.add(new Block(new Point(300, 210), 15, 15));
+        blocks.add(new Block(new Point(315, 210), 15, 15));
+        blocks.add(new Block(new Point(330, 210), 15, 15));
+        blocks.add(new Block(new Point(345, 210), 15, 15));
+        blocks.add(new Block(new Point(360, 210), 15, 15));
+        blocks.add(new Block(new Point(375, 210), 15, 15));
+        blocks.add(new Block(new Point(390, 210), 15, 15));
+        blocks.add(new Block(new Point(405, 210), 15, 15));
+        blocks.add(new Block(new Point(420, 210), 15, 15));
+        blocks.add(new Block(new Point(435, 210), 15, 15));
+        blocks.add(new Block(new Point(450, 210), 15, 15));
+        blocks.add(new Block(new Point(465, 210), 15, 15));
+        blocks.add(new Block(new Point(480, 210), 15, 15));
+        blocks.add(new Block(new Point(495, 210), 15, 15));
+        blocks.add(new Block(new Point(510, 210), 15, 15));
+        blocks.add(new Block(new Point(525, 210), 15, 15));
+        blocks.add(new Block(new Point(540, 210), 15, 15));
+        blocks.add(new Block(new Point(555, 210), 15, 15));
+        blocks.add(new Block(new Point(570, 210), 15, 15));
+        blocks.add(new Block(new Point(585, 210), 15, 15));
+        blocks.add(new Block(new Point(600, 210), 15, 15));
+        blocks.add(new Block(new Point(615, 210), 15, 15));
+        blocks.add(new Block(new Point(630, 210), 15, 15));
+        blocks.add(new Block(new Point(165, 225), 15, 15));
+        blocks.add(new Block(new Point(180, 225), 15, 15));
+        blocks.add(new Block(new Point(195, 225), 15, 15));
+        blocks.add(new Block(new Point(210, 225), 15, 15));
+        blocks.add(new Block(new Point(225, 225), 15, 15));
+        blocks.add(new Block(new Point(240, 225), 15, 15));
+        blocks.add(new Block(new Point(255, 225), 15, 15));
+        blocks.add(new Block(new Point(270, 225), 15, 15));
+        blocks.add(new Block(new Point(285, 225), 15, 15));
+        blocks.add(new Block(new Point(300, 225), 15, 15));
+        blocks.add(new Block(new Point(315, 225), 15, 15));
+        blocks.add(new Block(new Point(330, 225), 15, 15));
+        blocks.add(new Block(new Point(345, 225), 15, 15));
+        blocks.add(new Block(new Point(360, 225), 15, 15));
+        blocks.add(new Block(new Point(375, 225), 15, 15));
+        blocks.add(new Block(new Point(390, 225), 15, 15));
+        blocks.add(new Block(new Point(405, 225), 15, 15));
+        blocks.add(new Block(new Point(420, 225), 15, 15));
+        blocks.add(new Block(new Point(435, 225), 15, 15));
+        blocks.add(new Block(new Point(450, 225), 15, 15));
+        blocks.add(new Block(new Point(465, 225), 15, 15));
+        blocks.add(new Block(new Point(480, 225), 15, 15));
+        blocks.add(new Block(new Point(495, 225), 15, 15));
+        blocks.add(new Block(new Point(510, 225), 15, 15));
+        blocks.add(new Block(new Point(525, 225), 15, 15));
+        blocks.add(new Block(new Point(540, 225), 15, 15));
+        blocks.add(new Block(new Point(555, 225), 15, 15));
+        blocks.add(new Block(new Point(570, 225), 15, 15));
+        blocks.add(new Block(new Point(585, 225), 15, 15));
+        blocks.add(new Block(new Point(600, 225), 15, 15));
+        blocks.add(new Block(new Point(615, 225), 15, 15));
+        blocks.add(new Block(new Point(630, 225), 15, 15));
+
         return blocks;
     }
 }

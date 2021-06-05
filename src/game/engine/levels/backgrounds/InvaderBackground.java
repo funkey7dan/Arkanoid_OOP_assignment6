@@ -7,6 +7,9 @@ import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
+/**
+ * The type Invader background.
+ */
 public class InvaderBackground extends Background {
     private DrawStar ds;
 
@@ -49,8 +52,6 @@ public class InvaderBackground extends Background {
         super.drawOn(d);
         d.setColor(Color.yellow.brighter());
         ds.drawOn(d);
-        //d.fillOval(105, 95, 3, 15);
-        //d.fillOval(94, 100, 25, 3);
     }
 
     @Override

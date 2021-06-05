@@ -4,23 +4,25 @@ import game.engine.actors.Block;
 import game.engine.actors.Velocity;
 import game.engine.actors.sprites.Sprite;
 import game.engine.levels.backgrounds.FinalFourBackground;
-import game.engine.levels.backgrounds.Green3Background;
 import game.ui.shapes.Point;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Final four.
+ */
 public class FinalFour implements LevelInformation {
     private static final int GUI_HEIGHT = 600;
     private static final int GUI_WIDTH = 800;
-    private int numberOfBalls;
-    private List<Velocity> initialBallVelocities = new ArrayList<>();
-    private int paddleSpeed;
-    private int paddleWidth;
-    private String levelName;
-    private Sprite background;
-    private List<Block> blocks = new ArrayList<>();
+    private final int numberOfBalls;
+    private final List<Velocity> initialBallVelocities = new ArrayList<>();
+    private final int paddleSpeed;
+    private final int paddleWidth;
+    private final String levelName;
+    private final Sprite background;
+    private final List<Block> blocks = new ArrayList<>();
     private int numberOfBlocksToRemove;
     private static final int BLOCK_ROWS = 15;
     private static final int BLOCK_COLUMNS = 7;
@@ -31,6 +33,9 @@ public class FinalFour implements LevelInformation {
     private static final int BLOCK_START_Y = 100;
 
 
+    /**
+     * Instantiates a new Final four.
+     */
     public FinalFour() {
         this.numberOfBalls = 3;
         initialBallVelocities.add(Velocity.fromAngleAndSpeed(180, 7));

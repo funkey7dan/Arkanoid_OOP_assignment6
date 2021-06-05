@@ -12,7 +12,6 @@ import game.ui.shapes.Point;
 
 import java.awt.Image;
 import java.awt.Color;
-import java.util.Random;
 import java.util.Comparator;
 
 /**
@@ -85,12 +84,21 @@ public class Ball implements Sprite {
         this.color = ball.color;
     }
 
+    /**
+     * We check if the flag is set, indicating that the ball will now pass through the blocks destroying them,
+     * but not rebounding.
+     *
+     * @return - the value of laserFlag.
+     */
     public boolean isLaserFlag() {
         return laserFlag;
     }
 
-    public void setLaserFlag(boolean laserFlag) {
-        this.laserFlag = laserFlag;
+    /**
+     * @param laserFlag1 the value we set to the flag.
+     */
+    public void setLaserFlag(boolean laserFlag1) {
+        this.laserFlag = laserFlag1;
     }
 
     /**
@@ -264,7 +272,8 @@ public class Ball implements Sprite {
      * @param v1 - the velocity we use to set the trajectory
      */
     public void setTrajectory(Velocity v1) {
-        double x = center.getX(), y = center.getY();
+        double x = center.getX();
+        double y = center.getY();
 
         // we get the point that the ball will arrive to at current velocity.
         x += v1.getDx();
@@ -393,7 +402,6 @@ public class Ball implements Sprite {
         if (isOnRightSide) {
             if (!vChangeFlag) {
                 this.v = collision.collisionObject().hit(this, collision.collisionPoint(), this.v);
-                vChangeFlag = true;
             }
             direction += "right";
         }
@@ -486,8 +494,8 @@ public class Ball implements Sprite {
     public void spawnBall() {
         Ball child = new Ball(this);
         child.setVelocity(-this.getVelocity().getDx(), -this.getVelocity().getDy());
-        child.setR(this.r - 1);
-        this.setR(this.r - 1);
+        child.setRadius(this.r - 1);
+        this.setRadius(this.r - 1);
         child.addToGame(gameLevel);
     }
 
@@ -503,9 +511,9 @@ public class Ball implements Sprite {
             Velocity vChild = Velocity.fromAngleAndSpeed(60 * i, 7);
             child.setVelocity(vChild);
             if (this.r >= 3) {
-                child.setR(this.r - 1);
+                child.setRadius(this.r - 1);
             } else {
-                child.setR(this.r);
+                child.setRadius(this.r);
             }
             child.addToGame(gameLevel);
         }
@@ -513,8 +521,11 @@ public class Ball implements Sprite {
 
     }
 
-    public void setR(int r) {
-        this.r = r;
+    /**
+     * @param radius - the radius we want to set.
+     */
+    public void setRadius(int radius) {
+        this.r = radius;
     }
 }
 

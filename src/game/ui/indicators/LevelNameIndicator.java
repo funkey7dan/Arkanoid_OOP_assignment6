@@ -36,9 +36,9 @@ public class LevelNameIndicator implements Sprite {
     public void drawOn(DrawSurface d) {
         String s = gameLevel.getLevelName();
         d.setColor(Color.black);
-        d.drawText(690 - s.length() * 11, 31, "Level name: " + s, 20);
+        d.drawText(690 - s.length() * 12, 31, "Level name: " + s, 20);
         d.setColor(Color.white);
-        d.drawText(692 - s.length() * 11, 30, "Level name: " + s, 20);
+        d.drawText(692 - s.length() * 12, 30, "Level name: " + s, 20);
 
     }
 

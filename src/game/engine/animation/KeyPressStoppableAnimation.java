@@ -11,6 +11,7 @@ public class KeyPressStoppableAnimation implements Animation {
     private final KeyboardSensor sensor;
     private final String key;
     private final Animation animation;
+    private boolean isAlreadyPressed;
 
     /**
      * Instantiates a new Key press stoppable animation.
@@ -23,6 +24,7 @@ public class KeyPressStoppableAnimation implements Animation {
         this.sensor = sensor;
         this.key = key;
         this.animation = animation;
+        isAlreadyPressed = false;
     }
 
     /**
@@ -32,6 +34,12 @@ public class KeyPressStoppableAnimation implements Animation {
      */
     @Override
     public void doOneFrame(DrawSurface d) {
+        if (this.sensor.isPressed(key)) {
+            this.isAlreadyPressed = true;
+        }
+        if (isAlreadyPressed) {
+            return;
+        }
         animation.doOneFrame(d);
 
     }

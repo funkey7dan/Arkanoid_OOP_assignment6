@@ -38,7 +38,7 @@ public class GameFlow {
         this.ar = ar;
         this.ks = ks;
         this.gui = gui;
-        lives.setValue(7);
+        lives.setValue(1); // TODO check to be 7
     }
 
     /**

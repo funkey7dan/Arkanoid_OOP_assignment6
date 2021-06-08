@@ -1,4 +1,4 @@
-package game.engine.levels.backgrounds;
+package game.ui.backgrounds;
 
 import biuoop.DrawSurface;
 import game.engine.levels.GameLevel;

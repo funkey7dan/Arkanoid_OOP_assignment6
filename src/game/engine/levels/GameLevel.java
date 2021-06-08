@@ -5,13 +5,14 @@ package game.engine.levels;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
-import game.engine.accessories.bonuses.Bonus;
 import game.engine.accessories.Counter;
+import game.engine.accessories.SoundPlayer;
+import game.engine.accessories.bonuses.Bonus;
+import game.engine.actors.Ball;
+import game.engine.actors.Block;
 import game.engine.actors.Frame;
 import game.engine.actors.Paddle;
 import game.engine.actors.Velocity;
-import game.engine.actors.Ball;
-import game.engine.actors.Block;
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.collidables.GameEnvironment;
 import game.engine.actors.sprites.Sprite;
@@ -109,6 +110,7 @@ public class GameLevel implements Animation, LevelInformation {
     // counters
     private final Counter currentBlocks = new Counter();
     private final Counter currentBalls = new Counter();
+    private static int pressedPassed = 0;
     // per level score
     private final Counter currentScore = new Counter();
     // total game score
@@ -278,8 +280,8 @@ public class GameLevel implements Animation, LevelInformation {
     public void generateBalls(int numberOfBalls1, List<Velocity> ballVelocity) {
 
         for (int i = 0; i < numberOfBalls1; i++) {
-            Ball ball = new Ball(BALL_START_X,
-                    BALL_START_Y, BALL_RADIUS,
+            Ball ball = new Ball(p1.getMiddle().getX(),
+                    p1.getMiddle().getY() - BALL_RADIUS, BALL_RADIUS,
                     Color.WHITE);
             Velocity v = ballVelocity.get(i);
             if (gravityFlag && v.getSpeed() != 7) {
@@ -297,7 +299,7 @@ public class GameLevel implements Animation, LevelInformation {
      * Generate blocks.
      */
     public void generateBlocks() {
-        //Randomizer
+
         // create a Random generator
         Random rand1 = new Random();
 
@@ -307,9 +309,7 @@ public class GameLevel implements Animation, LevelInformation {
 
         ScoreTrackingListener scoreListener = new ScoreTrackingListener(getCurrentScore());
         for (Block block : getLevelInformation().blocks()) {
-            //TODO check before
-            // submit
-            //if (bonusesFlag) {
+
             if (rand1.nextInt(50) == 1 && levelInformation.blocks().size() > 10 && bonusesFlag) {
                 block.setGiftIcon();
                 block.addHitListener(giftAdder);
@@ -437,6 +437,7 @@ public class GameLevel implements Animation, LevelInformation {
 
         // use our runner to run the current animation -- which is one turn of
         // the game.
+        SoundPlayer.loopTheme();
         this.runner.run(this);
 
     }
@@ -474,8 +475,12 @@ public class GameLevel implements Animation, LevelInformation {
             this.running = false;
             this.gameRunning = false;
         }
-        if (keyboard.isPressed("p")) {
+        if (keyboard.isPressed("p") || keyboard.isPressed("P")) {
             runner.run(new KeyPressStoppableAnimation(keyboard, "space", new PauseScreen()));
+        }
+        pressedPassed++;
+        if (keyboard.isPressed("m") && pressedPassed % 10 == 0) {
+            SoundPlayer.muteOnOff();
         }
 
 

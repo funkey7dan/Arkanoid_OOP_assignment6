@@ -3,7 +3,7 @@ package game.engine.levels.levelinfo;
 import game.engine.actors.Block;
 import game.engine.actors.Velocity;
 import game.engine.actors.sprites.Sprite;
-import game.engine.levels.backgrounds.DirectHitBackground;
+import game.ui.backgrounds.DirectHitBackground;
 import game.ui.shapes.Point;
 
 import java.awt.Color;

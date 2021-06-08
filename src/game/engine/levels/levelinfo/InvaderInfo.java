@@ -4,7 +4,7 @@ import game.engine.accessories.CreateInvaderBlocks;
 import game.engine.actors.Block;
 import game.engine.actors.Velocity;
 import game.engine.actors.sprites.Sprite;
-import game.engine.levels.backgrounds.InvaderBackground;
+import game.ui.backgrounds.InvaderBackground;
 import game.ui.shapes.Point;
 
 import java.awt.Color;

@@ -1,5 +1,5 @@
 //***REMOVED***
-package game.engine.levels.backgrounds;
+package game.ui.backgrounds;
 
 import biuoop.DrawSurface;
 import game.ui.shapes.Point;

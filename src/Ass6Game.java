@@ -4,6 +4,7 @@ import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
 import game.GameFlow;
+import game.engine.accessories.SoundPlayer;
 import game.engine.animation.AnimationRunner;
 import game.engine.levels.levelinfo.DirectHitInfo;
 import game.engine.levels.levelinfo.EldrichInfo;
@@ -54,14 +55,19 @@ public class Ass6Game {
         Sleeper sleeper = new Sleeper();
         AnimationRunner ar = new AnimationRunner(60, gui, sleeper);
         GameFlow game = new GameFlow(ar, ks, gui);
+
         if (args.length != 0) {
             for (String s : args) {
                 for (String string : args) {
                     if (string.contains("noDie")) {
                         game.setNoDeath(true);
                     }
+                    if (string.contains("mute")) {
+                        SoundPlayer.muteOnOff();
+                    }
                 }
-
+                SoundPlayer.playSound(SoundPlayer.Effects.silence.ordinal());
+                SoundPlayer.playSound(SoundPlayer.Effects.gamestart.ordinal());
                 try {
                     Integer intVal = Integer.parseInt(s) - 1;
                     if (intVal >= 0 && intVal < levels.size()) {

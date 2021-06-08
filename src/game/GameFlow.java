@@ -4,6 +4,7 @@ package game;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import game.engine.accessories.Counter;
+import game.engine.accessories.SoundPlayer;
 import game.engine.animation.AnimationRunner;
 import game.engine.animation.KeyPressStoppableAnimation;
 import game.engine.animation.LoseScreen;
@@ -26,6 +27,7 @@ public class GameFlow {
     private boolean noDeath = false;
     private final Counter lives = new Counter();
     private final Counter totalScore = new Counter();
+    private static final int LIVES = 7;
 
     /**
      * Instantiates a new Game flow.
@@ -38,7 +40,7 @@ public class GameFlow {
         this.ar = ar;
         this.ks = ks;
         this.gui = gui;
-        lives.setValue(1); // TODO check to be 7
+        lives.setValue(LIVES); // TODO check to be 7
     }
 
     /**
@@ -47,6 +49,7 @@ public class GameFlow {
      * @param levels the levels
      */
     public void runLevels(List<LevelInformation> levels) {
+
         for (LevelInformation levelInfo : levels) {
             GameLevel level = new GameLevel(levelInfo, this.ks, this.ar, this.getTotalScore(), this.gui, this.lives);
             if (noDeath) {
@@ -57,9 +60,12 @@ public class GameFlow {
                 level.doCycle();
                 if (level.getCurrentBlocks().getValue() > 0) {
                     lives.decrease(1);
+                    SoundPlayer.playSound(SoundPlayer.Effects.lifeloss.ordinal());
                 }
                 if (lives.getValue() <= 0) {
                     getTotalScore().increase(level.getCurrentScore().getValue());
+                    SoundPlayer.stopTheme();
+                    SoundPlayer.playSound(SoundPlayer.Effects.gameover.ordinal());
                     ar.run(new KeyPressStoppableAnimation(ks, "space", new LoseScreen(getTotalScore())));
                     gui.close();
                     return;
@@ -69,6 +75,8 @@ public class GameFlow {
                 }
             } while (!level.gameShouldStop());
         }
+        SoundPlayer.stopTheme();
+        SoundPlayer.playSound(SoundPlayer.Effects.gamewin.ordinal());
         ar.run(new KeyPressStoppableAnimation(ks, "space", new WinScreen(getTotalScore())));
         gui.close();
     }

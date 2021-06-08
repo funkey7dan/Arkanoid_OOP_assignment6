@@ -1,5 +1,5 @@
 //XXXXXXXXX
-package game.engine.levels.backgrounds;
+package game.ui.backgrounds;
 
 import biuoop.DrawSurface;
 import game.engine.actors.sprites.Sprite;
@@ -61,6 +61,8 @@ public class Background implements Sprite {
      */
     @Override
     public void drawOn(DrawSurface d) {
+        d.setColor(Color.black);
+        d.drawText(15, 625, "Press p to pause, press m to mute.", 10);
         d.setColor(this.color);
         d.fillRectangle((int) this.rect.getUpperLeft().getX(),
                 (int) this.rect.getUpperLeft().getY(),

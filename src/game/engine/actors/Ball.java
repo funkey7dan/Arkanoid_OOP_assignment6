@@ -326,14 +326,21 @@ public class Ball implements Sprite {
 
         // find the closest collision to the object on the current trajectory
         collision = this.ge.getClosestCollision(this.trajectory);
-
+        String dir;
         //check to see if the ball has been ran over by the paddle, and if so we commence rescue operations.
         for (Collidable c : ge.getCollidableList()) {
-            if (c.getCollisionRectangle().isInside(this.center)) {
+            if (c.getCollisionRectangle().isInside(this.center) && c.equals(gameLevel.getP1())) {
 
                 // we move the ball to the height of paddle
-                this.center.setY(c.getCollisionRectangle().getUpperRight().getY());
-                return;
+                //this.center.setY(c.getCollisionRectangle().getUpperRight().getY());
+                if (Math.abs(this.center.getX() - c.getCollisionRectangle().getUpperRight().getX())
+                        > Math.abs(this.center.getX() - c.getCollisionRectangle().getUpperLeft().getX())) {
+                    this.center.setX(c.getCollisionRectangle().getUpperLeft().getX() - 8);
+
+                } else {
+                    this.center.setX(c.getCollisionRectangle().getUpperRight().getX() + 8);
+                }
+                //return;
 
             }
         }
@@ -360,6 +367,7 @@ public class Ball implements Sprite {
      * @return - a string containing the direction of the hit.
      */
     public String checkCollisionDirection(CollisionInfo collision) {
+        // check whether the collision is on one of the sides.
         String direction = "";
         boolean isOnTopSide = collision.collisionObject().getCollisionRectangle().
                 getTopSide().isPointOnSegment(collision.collisionPoint());

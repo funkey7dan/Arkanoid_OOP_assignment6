@@ -1,18 +1,16 @@
-package game.engine.levels.backgrounds;
+//XXXXXXXXX
+package game.ui.backgrounds;
 
 import biuoop.DrawSurface;
-import game.ui.shapes.DrawStar;
 import game.ui.shapes.Point;
 import game.ui.shapes.Rectangle;
 
 import java.awt.Color;
 
 /**
- * The type Invader background.
+ * The type Wide easy background.
  */
-public class InvaderBackground extends Background {
-    private DrawStar ds;
-
+public class WideEasyBackground extends Background {
     /**
      * Constructor for game.engine.actors.Block.
      *
@@ -20,7 +18,7 @@ public class InvaderBackground extends Background {
      * @param width     - the width of the block
      * @param height    - the height of the block
      */
-    public InvaderBackground(Point upperLeft, double width, double height) {
+    public WideEasyBackground(Point upperLeft, double width, double height) {
         super(upperLeft, width, height);
     }
 
@@ -32,9 +30,8 @@ public class InvaderBackground extends Background {
      * @param height    - the height of the block
      * @param color     - the color of the block
      */
-    public InvaderBackground(Point upperLeft, double width, double height, Color color) {
+    public WideEasyBackground(Point upperLeft, double width, double height, Color color) {
         super(upperLeft, width, height, color);
-        this.ds = new DrawStar();
     }
 
     /**
@@ -42,20 +39,27 @@ public class InvaderBackground extends Background {
      *
      * @param rec - the rectangle we use to build the block
      */
-    public InvaderBackground(Rectangle rec) {
+    public WideEasyBackground(Rectangle rec) {
         super(rec);
     }
 
     @Override
     public void drawOn(DrawSurface d) {
-        super.setColor(Color.black);
+        super.setColor(new Color(150, 250, 250));
         super.drawOn(d);
-        d.setColor(Color.yellow.brighter());
-        ds.drawOn(d);
-    }
 
-    @Override
-    public void setColor(Color color1) {
-        super.setColor(color1);
+        d.setColor(new Color(250, 250, 150));
+        d.fillCircle(200, 140, 50);
+        d.setColor(new Color(235, 200, 100));
+        d.fillCircle(200, 140, 40);
+        d.setColor(new Color(250, 250, 0));
+        d.fillCircle(200, 140, 30);
+        for (int i = 0; i < 800; i += 10) {
+            d.drawLine(200, 140, i, 250);
+        }
+        d.setColor(new Color(250, 250, 250));
+        d.fillCircle(200, 140, 5);
+
+
     }
 }

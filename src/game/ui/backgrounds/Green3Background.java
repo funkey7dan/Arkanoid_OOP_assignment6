@@ -1,4 +1,4 @@
-package game.engine.levels.backgrounds;
+package game.ui.backgrounds;
 
 import biuoop.DrawSurface;
 import game.ui.shapes.Point;
@@ -47,7 +47,7 @@ public class Green3Background extends Background {
         super.setColor(new Color(0, 150, 0));
         super.drawOn(d);
         d.setColor(Color.DARK_GRAY.darker());
-        d.fillRectangle(65, 400, 100, 200);
+        d.fillRectangle(65, 400, 100, 250);
         d.setColor(Color.DARK_GRAY);
         d.fillRectangle(98, 350, 35, 50);
         d.setColor(Color.DARK_GRAY.brighter());
@@ -57,7 +57,7 @@ public class Green3Background extends Background {
         d.fillCircle(116, 150, 15);
         d.setColor(new Color(246, 77, 54));
         d.fillCircle(116, 150, 10);
-        d.setColor(Color.WHITE);
+        d.setColor(new Color(250, 243, 221));
         d.fillCircle(116, 150, 5);
         for (int i = 1; i < 7; i++) {
             for (int j = 0; j < 5; j++) {

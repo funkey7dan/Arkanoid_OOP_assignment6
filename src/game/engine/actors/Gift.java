@@ -1,8 +1,8 @@
 package game.engine.actors;
 
 import biuoop.DrawSurface;
+import game.engine.accessories.SoundPlayer;
 import game.engine.accessories.bonuses.Bonus;
-import game.engine.accessories.bonuses.ChangeGameSpeed;
 import game.engine.accessories.bonuses.ChangePaddleWidth;
 import game.engine.accessories.bonuses.DoubleBall;
 import game.engine.accessories.bonuses.ExtraLife;
@@ -36,7 +36,8 @@ public class Gift implements Sprite {
 
     /**
      * Constructor for the ball class.
-     *  @param center - the center point of the balls center.
+     *
+     * @param center - the center point of the balls center.
      * @param r      - the radius of the ball.
      */
     public Gift(Point center, int r) {
@@ -86,6 +87,7 @@ public class Gift implements Sprite {
                 gameLevel.addBonus(bonus);
                 removeFromGame(gameLevel);
                 moveOneStep();
+                SoundPlayer.playSound(SoundPlayer.Effects.bonus.ordinal());
                 return;
             }
         }
@@ -106,14 +108,13 @@ public class Gift implements Sprite {
         bonuses.add(new DoubleBall(g));
         bonuses.add(new ShotgunBall(g));
         bonuses.add(new LaserBall(g));
-        bonuses.add(new ChangeGameSpeed(g));
         bonuses.add(new ExtraLife(g));
         bonuses.add(new ChangePaddleWidth(g));
         g.addSprite(this);
         this.gameLevel = g;
         this.ge = g.getEnvironment();
         Random rand1 = new Random();
-        int i = rand1.nextInt(6);
+        int i = rand1.nextInt(5);
         //i = 5;// TODO check if it's random
         bonus = bonuses.get(i); // TODO check if its i
         switch (i) {
@@ -127,11 +128,7 @@ public class Gift implements Sprite {
                 this.color = Color.green;
                 break;
             case 3:
-                // speed color
-                this.color = Color.RED;
-                break;
-            case 4:
-                // speed color
+                // lifes color
                 this.color = Color.PINK;
                 break;
             default:

@@ -2,6 +2,7 @@
 package game.engine.listeners;
 
 import game.engine.accessories.Counter;
+import game.engine.accessories.SoundPlayer;
 import game.engine.actors.Ball;
 import game.engine.actors.Block;
 import game.engine.levels.GameLevel;
@@ -32,5 +33,7 @@ public class BlockRemover implements HitListener {
         beingHit.removeALLHitListener();
         beingHit.removeFromGame(gameLevel);
         remainingBlocks.decrease(1);
+        SoundPlayer.playSound(SoundPlayer.Effects.impact.ordinal());
+
     }
 }

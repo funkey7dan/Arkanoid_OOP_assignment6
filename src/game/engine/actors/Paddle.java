@@ -1,10 +1,11 @@
 package game.engine.actors;
 
+import biuoop.DrawSurface;
+import biuoop.KeyboardSensor;
+import game.engine.accessories.SoundPlayer;
 import game.engine.actors.collidables.Collidable;
 import game.engine.actors.sprites.Sprite;
 import game.engine.levels.GameLevel;
-import biuoop.DrawSurface;
-import biuoop.KeyboardSensor;
 import game.ui.shapes.Point;
 import game.ui.shapes.Rectangle;
 
@@ -124,14 +125,19 @@ public class Paddle implements Sprite, Collidable {
         if (this.rect.getTopSide().isPointOnSegment(collisionPoint)) {
             switch (this.rect.getTopSide().whatPart(collisionPoint)) {
                 case 0:
+                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitleft.ordinal());
                     return Velocity.fromAngleAndSpeed(300, speed);
                 case 1:
+                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitleft.ordinal());
                     return Velocity.fromAngleAndSpeed(330, speed);
                 case 2:
+                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitmid.ordinal());
                     return new Velocity(currentVelocity.getDx(), -currentVelocity.getDy());
                 case 3:
+                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitright.ordinal());
                     return Velocity.fromAngleAndSpeed(30, speed);
                 case 4:
+                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitright.ordinal());
                     return Velocity.fromAngleAndSpeed(60, speed);
                 default:
                     break;
@@ -145,6 +151,7 @@ public class Paddle implements Sprite, Collidable {
             //change the direction of the balls movement to the opposite
             return new Velocity(currentVelocity.getDx(), -currentVelocity.getDy());
         }
+
         return new Velocity(-currentVelocity.getDx(), currentVelocity.getDy());
     }
 

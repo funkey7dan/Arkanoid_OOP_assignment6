@@ -3,7 +3,7 @@ package game.engine.levels.levelinfo;
 import game.engine.actors.Block;
 import game.engine.actors.Velocity;
 import game.engine.actors.sprites.Sprite;
-import game.engine.levels.backgrounds.WideEasyBackground;
+import game.ui.backgrounds.WideEasyBackground;
 import game.ui.shapes.Point;
 
 import java.awt.Color;
@@ -32,7 +32,8 @@ public class WideEasyInfo implements LevelInformation {
     public WideEasyInfo() {
         this.numberOfBalls = 10;
         for (int i = 0; i < numberOfBalls; i++) {
-            initialBallVelocities.add(Velocity.fromAngleAndSpeed((0 + i * 30 * Math.pow(-1, i)) % 85, 7));
+            //initialBallVelocities.add(Velocity.fromAngleAndSpeed((0 + i * 30 * Math.pow(-1, i)) % 85, 7));
+            initialBallVelocities.add(Velocity.fromAngleAndSpeed((0 + i * 7 * Math.pow(-1, i)), 7));
         }
         this.paddleSpeed = 7;
         this.paddleWidth = 600;

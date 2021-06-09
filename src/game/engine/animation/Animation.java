@@ -20,4 +20,9 @@ public interface Animation {
      * @return - the condition.
      */
     boolean shouldStop();
+
+    /**
+     * Stops this animation.
+     */
+    public void stopThis();
 }

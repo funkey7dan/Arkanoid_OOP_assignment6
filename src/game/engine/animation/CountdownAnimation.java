@@ -1,3 +1,4 @@
+//XXXXXXXXX
 package game.engine.animation;
 
 import biuoop.DrawSurface;
@@ -8,16 +9,17 @@ import java.awt.Color;
 
 /**
  * The type Countdown animation.
+ * The CountdownAnimation will display the given gameScreen,
+ * for numOfSeconds seconds, and on top of them it will show
+ * a countdown from countFrom back to 1, where each number will
+ * appear on the screen for (numOfSeconds / countFrom) seconds, before
+ * it is replaced with the next one.
  */
-// The CountdownAnimation will display the given gameScreen,
-// for numOfSeconds seconds, and on top of them it will show
-// a countdown from countFrom back to 1, where each number will
-// appear on the screen for (numOfSeconds / countFrom) seconds, before
-// it is replaced with the next one.
 public class CountdownAnimation implements Animation {
     private final double numOfseconds;
     private final SpriteCollection gameScreen;
     private static int timeLeft;
+    private final int countFrom;
 
     /**
      * Instantiates a new Countdown animation.
@@ -30,6 +32,7 @@ public class CountdownAnimation implements Animation {
         this.numOfseconds = numOfSeconds;
         this.gameScreen = gameScreen;
         timeLeft = countFrom;
+        this.countFrom = countFrom;
     }
 
     /**
@@ -42,8 +45,8 @@ public class CountdownAnimation implements Animation {
         d.setColor(Color.RED);
         d.drawText(250, d.getHeight() / 2, String.valueOf(timeLeft), 60);
         Sleeper sleeper = new Sleeper();
-        if (timeLeft < 3) {
-            sleeper.sleepFor((long) numOfseconds * 300);
+        if (timeLeft < countFrom) {
+            sleeper.sleepFor(670);
         }
         timeLeft--;
     }
@@ -53,5 +56,11 @@ public class CountdownAnimation implements Animation {
      */
     public boolean shouldStop() {
         return timeLeft < 0;
+    }
+
+    /**
+     * Stops this animation.
+     */
+    public void stopThis() {
     }
 }

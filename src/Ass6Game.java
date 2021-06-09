@@ -58,16 +58,13 @@ public class Ass6Game {
 
         if (args.length != 0) {
             for (String s : args) {
-                for (String string : args) {
-                    if (string.contains("noDie")) {
-                        game.setNoDeath(true);
-                    }
-                    if (string.contains("mute")) {
-                        SoundPlayer.muteOnOff();
-                    }
+
+                if (s.equals("noDie")) {
+                    game.setNoDeath(true);
                 }
-                SoundPlayer.playSound(SoundPlayer.Effects.silence.ordinal());
-                SoundPlayer.playSound(SoundPlayer.Effects.gamestart.ordinal());
+                if (s.equals("mute")) {
+                    SoundPlayer.muteOnOff();
+                }
                 try {
                     Integer intVal = Integer.parseInt(s) - 1;
                     if (intVal >= 0 && intVal < levels.size()) {
@@ -78,6 +75,8 @@ public class Ass6Game {
                     e.printStackTrace();
                 }
             }
+            SoundPlayer.playSound(SoundPlayer.Effects.silence.ordinal());
+            SoundPlayer.playSound(SoundPlayer.Effects.gamestart.ordinal());
             if (argInts.isEmpty()) {
                 game.runLevels(levels);
             } else {

@@ -40,10 +40,10 @@ public class FinalFour implements LevelInformation {
         this.numberOfBalls = 3;
         initialBallVelocities.add(Velocity.fromAngleAndSpeed(180, 7));
         for (int i = 0; i < numberOfBalls; i++) {
-            initialBallVelocities.add(Velocity.fromAngleAndSpeed(180 - 230 * (Math.pow(-1, i)), 7));
+            initialBallVelocities.add(Velocity.fromAngleAndSpeed(180 + 221 * (Math.pow(-1, i)), 7));
         }
         this.paddleSpeed = 7;
-        this.paddleWidth = 100;
+        this.paddleWidth = 160;
         this.levelName = "Final Four";
         this.background = new FinalFourBackground(new Point(-1, -1),
                 GUI_WIDTH + 5, GUI_HEIGHT + 5, Color.black);
@@ -51,7 +51,7 @@ public class FinalFour implements LevelInformation {
             for (int j = 0; j < BLOCK_ROWS; j++) {
                 Block block;
                 block = new Block(new Point(3 + j * BLOCK_WIDTH,
-                        50 + BLOCK_HEIGHT * i), BLOCK_WIDTH, BLOCK_HEIGHT);
+                        40 + BLOCK_HEIGHT * i), BLOCK_WIDTH, BLOCK_HEIGHT);
                 switch (i) {
                     case 0:
                         block.setColor(Color.ORANGE);

@@ -37,8 +37,13 @@ public class SoundPlayer {
         lifeloss,
         ballkill,
         gameover,
-        gamewin
+        gamewin,
+        paused,
+        resumed,
+        gravity
     }
+
+    private static long loopTime;
 
     /**
      * Play a sound effects.
@@ -64,6 +69,9 @@ public class SoundPlayer {
             sounds.add(new File("src/game/engine/accessories/sounds/ballkill.wav"));
             sounds.add(new File("src/game/engine/accessories/sounds/gameover.wav"));
             sounds.add(new File("src/game/engine/accessories/sounds/gamewin.wav"));
+            sounds.add(new File("src/game/engine/accessories/sounds/paused.wav"));
+            sounds.add(new File("src/game/engine/accessories/sounds/resumed.wav"));
+            sounds.add(new File("src/game/engine/accessories/sounds/gravity.wav"));
             File soundFile = sounds.get(fileIndex);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
             // Get a sound clip resource.
@@ -117,9 +125,34 @@ public class SoundPlayer {
      * Stops the loop of the theme song.
      */
     public static void stopTheme() {
+        if (loop == null) {
+            return;
+        }
         // holy music stops
         loop.stop();
         loop = null;
+    }
+
+    /**
+     * Pauses the loop of the theme song, while saving the position.
+     */
+    public static void pauseTheme() {
+        if (loop == null) {
+            return;
+        }
+        loopTime = loop.getMicrosecondPosition();
+        loop.stop();
+    }
+
+    /**
+     * Resumes the loop of the theme song from the position
+     */
+    public static void resumeTheme() {
+        if (loop == null) {
+            return;
+        }
+        loop.setMicrosecondPosition(loopTime);
+        loop.start();
     }
 
     /**

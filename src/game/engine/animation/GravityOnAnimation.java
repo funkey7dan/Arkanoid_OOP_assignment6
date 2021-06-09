@@ -42,6 +42,7 @@ public class GravityOnAnimation implements Animation {
         d.drawText(246, 260,
                 "GRAVITY\n", 60);
         d.drawText(346, 320, "ON!", 60);
+
         Sleeper sleeper = new Sleeper();
         if (timeLeft < 3) {
             sleeper.sleepFor((long) numOfseconds * 300);
@@ -52,5 +53,9 @@ public class GravityOnAnimation implements Animation {
     @Override
     public boolean shouldStop() {
         return timeLeft < 0;
+    }
+
+    @Override
+    public void stopThis() {
     }
 }

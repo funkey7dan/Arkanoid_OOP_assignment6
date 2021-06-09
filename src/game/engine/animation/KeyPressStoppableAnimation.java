@@ -1,3 +1,4 @@
+//XXXXXXXXX
 package game.engine.animation;
 
 import biuoop.DrawSurface;
@@ -17,14 +18,14 @@ public class KeyPressStoppableAnimation implements Animation {
      * Instantiates a new Key press stoppable animation.
      *
      * @param sensor    the sensor
-     * @param key       the key
-     * @param animation the animation
+     * @param key       the key that will stop the animation
+     * @param animation the animation that plays until we stop
      */
     public KeyPressStoppableAnimation(KeyboardSensor sensor, String key, Animation animation) {
         this.sensor = sensor;
         this.key = key;
         this.animation = animation;
-        isAlreadyPressed = false;
+        isAlreadyPressed = true;
     }
 
     /**
@@ -34,11 +35,8 @@ public class KeyPressStoppableAnimation implements Animation {
      */
     @Override
     public void doOneFrame(DrawSurface d) {
-        if (this.sensor.isPressed(key)) {
-            this.isAlreadyPressed = true;
-        }
-        if (isAlreadyPressed) {
-            return;
+        if (!this.sensor.isPressed(key)) {
+            this.isAlreadyPressed = false;
         }
         animation.doOneFrame(d);
 
@@ -52,9 +50,15 @@ public class KeyPressStoppableAnimation implements Animation {
     @Override
     public boolean shouldStop() {
 
-        if (this.sensor.isPressed(key)) {
+        if (this.sensor.isPressed(key) && !isAlreadyPressed) {
+            animation.stopThis();
             return true;
         }
         return animation.shouldStop();
+    }
+
+
+    @Override
+    public void stopThis() {
     }
 }

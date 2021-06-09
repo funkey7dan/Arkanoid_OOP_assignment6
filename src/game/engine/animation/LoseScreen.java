@@ -13,7 +13,7 @@ public class LoseScreen implements Animation {
      * The Total score.
      */
     private final Counter totalScore;
-    private final boolean stop;
+    private boolean stop;
 
     /**
      * Instantiates a new Lose screen.
@@ -42,6 +42,13 @@ public class LoseScreen implements Animation {
     @Override
     public boolean shouldStop() {
         return this.stop;
+    }
+
+    /**
+     * Stops this animation.
+     */
+    public void stopThis() {
+        this.stop = true;
     }
 
 }

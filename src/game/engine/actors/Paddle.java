@@ -100,7 +100,7 @@ public class Paddle implements Sprite, Collidable {
             moveLeft();
         }
         if (keyboard.isPressed(KeyboardSensor.RIGHT_KEY)
-                && ((this.rect.getUpperRight().getX()) + speed <= guiWidth)) {
+                && ((this.rect.getUpperRight().getX())< guiWidth)) {
             moveRight();
         }
     }

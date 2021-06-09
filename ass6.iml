@@ -13,6 +13,7 @@
       <sourceFolder url="file://$MODULE_DIR$/resouces" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/resouces" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/engine/accessories/sounds" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

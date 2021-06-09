@@ -74,6 +74,7 @@ public class GameFlow {
                     getTotalScore().increase(100 + level.getCurrentScore().getValue());
                 }
             } while (!level.gameShouldStop());
+            System.gc();
         }
         SoundPlayer.stopTheme();
         SoundPlayer.playSound(SoundPlayer.Effects.gamewin.ordinal());

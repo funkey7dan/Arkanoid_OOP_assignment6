@@ -2,6 +2,7 @@ package game.engine.animation;
 
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
+import game.engine.accessories.SoundPlayer;
 
 import java.awt.Color;
 
@@ -10,7 +11,7 @@ import java.awt.Color;
  */
 public class PauseScreen implements Animation {
     private KeyboardSensor keyboard;
-    private final boolean stop;
+    private boolean stop;
 
     /**
      * Instantiates a new Pause screen.
@@ -42,6 +43,15 @@ public class PauseScreen implements Animation {
     @Override
     public boolean shouldStop() {
         return this.stop;
+    }
+
+    /**
+     * Stops this animation.
+     */
+    public void stopThis() {
+        SoundPlayer.playSound(SoundPlayer.Effects.resumed.ordinal());
+        SoundPlayer.resumeTheme();
+        this.stop = true;
     }
 
 }

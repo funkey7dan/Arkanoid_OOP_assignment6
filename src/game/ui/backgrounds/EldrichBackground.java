@@ -60,7 +60,6 @@ public class EldrichBackground extends Background {
     @Override
     public void timePassed() {
         super.timePassed();
-
         for (Eye e : eyes) {
             e.timePassed();
         }

@@ -24,5 +24,5 @@ public interface Animation {
     /**
      * Stops this animation.
      */
-    public void stopThis();
+    void stopThis();
 }

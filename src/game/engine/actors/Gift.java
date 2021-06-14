@@ -87,7 +87,11 @@ public class Gift implements Sprite {
                 gameLevel.addBonus(bonus);
                 removeFromGame(gameLevel);
                 moveOneStep();
-                SoundPlayer.playSound(SoundPlayer.Effects.bonus.ordinal());
+                try {
+                    SoundPlayer.playSound(SoundPlayer.Effects.bonus.ordinal());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return;
             }
         }
@@ -114,9 +118,8 @@ public class Gift implements Sprite {
         this.gameLevel = g;
         this.ge = g.getEnvironment();
         Random rand1 = new Random();
-        int i = rand1.nextInt(5);
-        //i = 5;// TODO check if it's random
-        bonus = bonuses.get(i); // TODO check if its i
+        int i = rand1.nextInt(bonuses.size());
+        bonus = bonuses.get(i);
         switch (i) {
             case 0:
             case 1:
@@ -134,8 +137,6 @@ public class Gift implements Sprite {
             default:
                 this.color = Color.gray;
         }
-        //bonus = bonuses.get(3); TODO check before submit
-        //g.setNumberOfBalls(g.numberOfBalls() + 1);
     }
 
     /**

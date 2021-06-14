@@ -49,7 +49,11 @@ public class PauseScreen implements Animation {
      * Stops this animation.
      */
     public void stopThis() {
-        SoundPlayer.playSound(SoundPlayer.Effects.resumed.ordinal());
+        try {
+            SoundPlayer.playSound(SoundPlayer.Effects.resumed.ordinal());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         SoundPlayer.resumeTheme();
         this.stop = true;
     }

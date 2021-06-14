@@ -40,7 +40,7 @@ public class GameFlow {
         this.ar = ar;
         this.ks = ks;
         this.gui = gui;
-        lives.setValue(LIVES); // TODO check to be 7
+        lives.setValue(LIVES);
     }
 
     /**
@@ -57,15 +57,24 @@ public class GameFlow {
             }
             level.initialize();
             do {
+
                 level.doCycle();
                 if (level.getCurrentBlocks().getValue() > 0) {
                     lives.decrease(1);
-                    SoundPlayer.playSound(SoundPlayer.Effects.lifeloss.ordinal());
+                    try {
+                        SoundPlayer.playSound(SoundPlayer.Effects.lifeloss.ordinal());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (lives.getValue() <= 0) {
                     getTotalScore().increase(level.getCurrentScore().getValue());
                     SoundPlayer.stopTheme();
-                    SoundPlayer.playSound(SoundPlayer.Effects.gameover.ordinal());
+                    try {
+                        SoundPlayer.playSound(SoundPlayer.Effects.gameover.ordinal());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     ar.run(new KeyPressStoppableAnimation(ks, "space", new LoseScreen(getTotalScore())));
                     gui.close();
                     return;
@@ -77,7 +86,11 @@ public class GameFlow {
             System.gc();
         }
         SoundPlayer.stopTheme();
-        SoundPlayer.playSound(SoundPlayer.Effects.gamewin.ordinal());
+        try {
+            SoundPlayer.playSound(SoundPlayer.Effects.gamewin.ordinal());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ar.run(new KeyPressStoppableAnimation(ks, "space", new WinScreen(getTotalScore())));
         gui.close();
     }

@@ -29,7 +29,11 @@ public class BallRemover implements HitListener {
     @Override
     public void hitEvent(Block beingHit, Ball hitter) {
         hitter.removeFromGame(gameLevel);
-        SoundPlayer.playSound(SoundPlayer.Effects.ballkill.ordinal());
+        try {
+            SoundPlayer.playSound(SoundPlayer.Effects.ballkill.ordinal());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //remainingBalls.decrease(1);
     }
 }

@@ -33,7 +33,11 @@ public class BlockRemover implements HitListener {
         beingHit.removeALLHitListener();
         beingHit.removeFromGame(gameLevel);
         remainingBlocks.decrease(1);
-        SoundPlayer.playSound(SoundPlayer.Effects.impact.ordinal());
+        try {
+            SoundPlayer.playSound(SoundPlayer.Effects.impact.ordinal());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

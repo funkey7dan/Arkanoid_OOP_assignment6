@@ -42,7 +42,7 @@ public class Ass6Game {
         List<Integer> argInts = new ArrayList<>();
         List<LevelInformation> customLevels = new ArrayList<>();
 
-        //levels.add((new DebugLevelInfo())); //TODO remove before submit
+
         levels.add((new DirectHitInfo()));
         levels.add((new WideEasyInfo()));
         levels.add((new Green3Info()));
@@ -50,11 +50,12 @@ public class Ass6Game {
         levels.add(new EldrichInfo());
         levels.add(new InvaderInfo());
 
-        GUI gui = new GUI("Ass6: Playing with balls", 800, 600); //TODO change this name maybe?
+        GUI gui = new GUI("Arkanoid", 800, 600);
         KeyboardSensor ks = gui.getKeyboardSensor();
         Sleeper sleeper = new Sleeper();
         AnimationRunner ar = new AnimationRunner(60, gui, sleeper);
         GameFlow game = new GameFlow(ar, ks, gui);
+        SoundPlayer player = new SoundPlayer();
 
         if (args.length != 0) {
             for (String s : args) {
@@ -75,8 +76,12 @@ public class Ass6Game {
                     e.printStackTrace();
                 }
             }
-            SoundPlayer.playSound(SoundPlayer.Effects.silence.ordinal());
-            SoundPlayer.playSound(SoundPlayer.Effects.gamestart.ordinal());
+            try {
+                SoundPlayer.playSound(SoundPlayer.Effects.silence.ordinal());
+                SoundPlayer.playSound(SoundPlayer.Effects.gamestart.ordinal());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if (argInts.isEmpty()) {
                 game.runLevels(levels);
             } else {

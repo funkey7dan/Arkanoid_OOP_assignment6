@@ -100,7 +100,7 @@ public class Paddle implements Sprite, Collidable {
             moveLeft();
         }
         if (keyboard.isPressed(KeyboardSensor.RIGHT_KEY)
-                && ((this.rect.getUpperRight().getX())< guiWidth)) {
+                && ((this.rect.getUpperRight().getX()) < guiWidth)) {
             moveRight();
         }
     }
@@ -125,19 +125,39 @@ public class Paddle implements Sprite, Collidable {
         if (this.rect.getTopSide().isPointOnSegment(collisionPoint)) {
             switch (this.rect.getTopSide().whatPart(collisionPoint)) {
                 case 0:
-                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitleft.ordinal());
+                    try {
+                        SoundPlayer.playSound(SoundPlayer.Effects.paddlehitleft.ordinal());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     return Velocity.fromAngleAndSpeed(300, speed);
                 case 1:
-                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitleft.ordinal());
+                    try {
+                        SoundPlayer.playSound(SoundPlayer.Effects.paddlehitleft.ordinal());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     return Velocity.fromAngleAndSpeed(330, speed);
                 case 2:
-                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitmid.ordinal());
+                    try {
+                        SoundPlayer.playSound(SoundPlayer.Effects.paddlehitmid.ordinal());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     return new Velocity(currentVelocity.getDx(), -currentVelocity.getDy());
                 case 3:
-                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitright.ordinal());
+                    try {
+                        SoundPlayer.playSound(SoundPlayer.Effects.paddlehitright.ordinal());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     return Velocity.fromAngleAndSpeed(30, speed);
                 case 4:
-                    SoundPlayer.playSound(SoundPlayer.Effects.paddlehitright.ordinal());
+                    try {
+                        SoundPlayer.playSound(SoundPlayer.Effects.paddlehitright.ordinal());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     return Velocity.fromAngleAndSpeed(60, speed);
                 default:
                     break;

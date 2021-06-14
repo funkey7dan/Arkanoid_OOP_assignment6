@@ -126,6 +126,7 @@ public class GameLevel implements Animation, LevelInformation {
     private boolean gameRunning;
     private final boolean bonusesFlag;
     private boolean gravityFlag;
+    private boolean alreadyPressed = false;
 
     /**
      * Constructor based on level info.
@@ -150,10 +151,11 @@ public class GameLevel implements Animation, LevelInformation {
         this.gui = gui;
         this.lives = lives;
         this.gameRunning = true;
-        this.bonusesFlag = true; //TODO check before submit
+        this.bonusesFlag = true;
         this.gravityFlag = false;
         getCurrentScore().setValue(0);
         startTime = System.currentTimeMillis();
+
 
     }
 
@@ -436,7 +438,11 @@ public class GameLevel implements Animation, LevelInformation {
 
         // use our runner to run the current animation -- which is one turn of
         // the game.
-        SoundPlayer.loopTheme();
+        try {
+            SoundPlayer.loopTheme();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.runner.run(this);
 
     }
@@ -454,7 +460,11 @@ public class GameLevel implements Animation, LevelInformation {
         //System.out.println("DEBUG " + (System.currentTimeMillis() - this.startTime));
         if (!gravityFlag && ((System.currentTimeMillis() - this.startTime) >= 10000) && paddleSpeed() == 3) {
             gravityFlag = true;
-            SoundPlayer.playSound(SoundPlayer.Effects.gravity.ordinal());
+            try {
+                SoundPlayer.playSound(SoundPlayer.Effects.gravity.ordinal());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.runner.run(new GravityOnAnimation(3, 3, sprites));
             this.p1.setSpeed(7);
 
@@ -476,13 +486,21 @@ public class GameLevel implements Animation, LevelInformation {
             this.gameRunning = false;
         }
         if (keyboard.isPressed("p") || keyboard.isPressed("P")) {
-            SoundPlayer.playSound(SoundPlayer.Effects.paused.ordinal());
+            try {
+                SoundPlayer.playSound(SoundPlayer.Effects.paused.ordinal());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             SoundPlayer.pauseTheme();
             runner.run(new KeyPressStoppableAnimation(keyboard, "space", new PauseScreen()));
         }
         // counts the cycles from the keyPress
         pressedPassed++;
-        if (keyboard.isPressed("m") && pressedPassed % 10 == 0) {
+        if (!keyboard.isPressed("m")) {
+            alreadyPressed = false;
+        }
+        if (keyboard.isPressed("m") && !alreadyPressed) {
+            alreadyPressed = true;
             SoundPlayer.muteOnOff();
         }
 

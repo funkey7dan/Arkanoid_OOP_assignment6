@@ -50,6 +50,7 @@ public class EldrichInfo implements LevelInformation {
                 GUI_WIDTH + 5, GUI_HEIGHT + 5, Color.black);
         blocks = CreateEldritchBlocks.create();
         numberOfBlocksToRemove = blocks.size();
+
     }
 
 

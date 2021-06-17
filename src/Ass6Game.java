@@ -1,4 +1,4 @@
-//XXXXXXXXX
+
 
 import biuoop.GUI;
 import biuoop.KeyboardSensor;

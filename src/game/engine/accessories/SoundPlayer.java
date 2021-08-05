@@ -170,7 +170,7 @@ public class SoundPlayer {
             return;
         }
         loop.setMicrosecondPosition(loopTime);
-        loop.start();
+        loop.loop(loop.LOOP_CONTINUOUSLY);
     }
 
     /**
@@ -201,13 +201,17 @@ public class SoundPlayer {
      * Toggle mute on and off.
      */
     public static void muteOnOff() {
-        System.out.println("mute toggled.");
+
         if (isMuted) {
+            System.out.println("mute toggled off.");
             isMuted = false;
-            unmuteTheme();
+            //unmuteTheme();
+            resumeTheme();
         } else {
+            System.out.println("mute toggled on.");
             isMuted = true;
-            muteTheme();
+            //muteTheme();
+            pauseTheme();
         }
 
     }

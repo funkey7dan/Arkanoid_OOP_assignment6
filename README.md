@@ -1,6 +1,6 @@
 # Arkanoid Game
 
-![Arkanoid Game Screenshot](screenshots/screenshot1.jpg)
+![Arkanoid Game Screenshot](screenshots/Screenshot1.jpg)
 
 This Arkanoid game was made for an Object-Oriented Programming (OOP) course at [Bar-Ilan University](https://github.com/ariecattan/biuoop2021/wiki). In addition to the base requirements, several enhancements have been added, including background music, sound effects, bonuses upon breaking "gift" blocks, and two custom levels. Cosmetic improvements have also been made.
 
@@ -29,7 +29,7 @@ java -jar ass6.jar 6 noDie
 
 ## Screenshots:
 
-![Screenshot 1](screenshots/screenshot2.jpg)
-![Screenshot 2](screenshots/screenshot3.jpg)
+![Screenshot 1](screenshots/Screenshot2.jpg)
+![Screenshot 2](screenshots/Screenshot3.jpg)
 ![Screenshot 3](screenshots/nightmare.gif)
 ```

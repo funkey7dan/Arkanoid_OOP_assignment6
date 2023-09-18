@@ -1,34 +1,17 @@
-//XXXXXXXXX
 package game.engine.accessories;
 
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
+import javax.sound.sampled.*;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
-/**
- * The type Sound player.
- */
 public class SoundPlayer {
-    // flag to check if the loop is already running
     private static boolean isRunning = false;
-    // the theme music loop
     private static Clip loop;
     private static boolean isMuted = false;
     private static boolean isLooped = false;
 
-    /**
-     * The enum Effects.
-     * Each effect corresponds in name and index to the list.
-     */
     public enum Effects {
         silence,
         gamestart,
@@ -47,61 +30,50 @@ public class SoundPlayer {
         whispers1
     }
 
-    // the variable to store the current time in the loop audio file.
     private static long loopTime;
+    private static ArrayList<String> soundPaths;
 
-    // List of all the sound files.
-    private static ArrayList<File> sounds;
-
-
-    /**
-     * Constructor for SoundPlayer.
-     * Creates a list with all the sound files we will be using.
-     */
     public SoundPlayer() {
-        sounds = new ArrayList<>();
-        sounds.add(new File("src/game/engine/accessories/sounds/silence.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/gamestart.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/impact.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/paddlehitmid.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/paddlehitright.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/paddlehitleft.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/bonus.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/lifeloss.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/ballkill.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/gameover.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/gamewin.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/paused.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/resumed.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/gravity.wav"));
-        sounds.add(new File("src/game/engine/accessories/sounds/whisper2.wav"));
+        soundPaths = new ArrayList<>();
+        soundPaths.add("/game/engine/accessories/sounds/silence.wav");
+        soundPaths.add("/game/engine/accessories/sounds/gamestart.wav");
+        soundPaths.add("/game/engine/accessories/sounds/impact.wav");
+        soundPaths.add("/game/engine/accessories/sounds/paddlehitmid.wav");
+        soundPaths.add("/game/engine/accessories/sounds/paddlehitright.wav");
+        soundPaths.add("/game/engine/accessories/sounds/paddlehitleft.wav");
+        soundPaths.add("/game/engine/accessories/sounds/bonus.wav");
+        soundPaths.add("/game/engine/accessories/sounds/lifeloss.wav");
+        soundPaths.add("/game/engine/accessories/sounds/ballkill.wav");
+        soundPaths.add("/game/engine/accessories/sounds/gameover.wav");
+        soundPaths.add("/game/engine/accessories/sounds/gamewin.wav");
+        soundPaths.add("/game/engine/accessories/sounds/paused.wav");
+        soundPaths.add("/game/engine/accessories/sounds/resumed.wav");
+        soundPaths.add("/game/engine/accessories/sounds/gravity.wav");
+        soundPaths.add("/game/engine/accessories/sounds/whisper2.wav");
     }
 
-    /**
-     * Play a sound effects.
-     *
-     * @param fileIndex the index of the file in the list of the sound effects.
-     *                  passed via the file name, according to the enum "Effects".
-     */
     public static void playSound(int fileIndex) {
         if (isMuted) {
             return;
         }
         try {
-            // Open an audio input stream.
-            File soundFile = sounds.get(fileIndex);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-            // Get a sound clip resource.
+            String soundPath = soundPaths.get(fileIndex);
+            // Load the sound file from the classpath
+            InputStream inputStream = SoundPlayer.class.getResourceAsStream(soundPath);
+            if (inputStream == null) {
+                throw new IOException("Sound file not found: " + soundPath);
+            }
+
+            // Create a buffered input stream that supports mark/reset
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(bufferedInputStream);
             Clip clip = AudioSystem.getClip();
-            // Open audio clip and load samples from the audio input stream.
             clip.open(audioIn);
             clip.start();
-            LineListener listener = new LineListener() {
-                @Override
-                public void update(LineEvent event) {
-                    if (event.getType().equals(LineEvent.Type.STOP)) {
-                        clip.close();
-                    }
+            LineListener listener = event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    clip.close();
                 }
             };
             clip.addLineListener(listener);
@@ -110,34 +82,33 @@ public class SoundPlayer {
         }
     }
 
-    /**
-     * Plays the theme music in a loop.
-     */
+
     public static void loopTheme() {
-
-
         if (loop != null || isMuted) {
             return;
         }
         try {
-            File soundFile = new File("src/game/engine/accessories/sounds/theme.wav");
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-            // Get a sound clip resource.
+            String soundPath = "/game/engine/accessories/sounds/theme.wav";
+
+            InputStream inputStream = SoundPlayer.class.getResourceAsStream(soundPath);
+            if (inputStream == null) {
+                throw new IOException("Sound file not found: " + soundPath);
+            }
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(bufferedInputStream);
             loop = AudioSystem.getClip(null);
-            // Open audio clip and load samples from the audio input stream.
             loop.open(audioIn);
             FloatControl gainControl = (FloatControl) loop.getControl(FloatControl.Type.MASTER_GAIN);
-            // reduce the volume of the clip
             gainControl.setValue(-10.0f);
             if (!isRunning) {
                 isRunning = true;
-                loop.loop(loop.LOOP_CONTINUOUSLY);
+                loop.loop(Clip.LOOP_CONTINUOUSLY);
             }
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
-            return;
         }
     }
+
 
     /**
      * Stops the loop of the theme song.

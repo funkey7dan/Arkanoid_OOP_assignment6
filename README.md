@@ -1,4 +1,3 @@
-Certainly! Here's the content you provided converted to a Markdown document:
 # Arkanoid Game
 
 ![Arkanoid Game Screenshot](screenshots/screenshot1.jpg)
